@@ -36,25 +36,25 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen bg-black flex items-center justify-center py-6 sm:py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-6 sm:space-y-8">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-white mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
             URAZ VİP TRANSFER
           </h1>
-          <p className="text-gray-300">
+          <p className="text-gray-300 text-sm sm:text-base">
             Admin Paneli Girişi
           </p>
         </div>
 
-        <div className="bg-gray-900 border border-yellow-500 rounded-2xl shadow-xl p-8">
+        <div className="bg-gray-900 border border-yellow-500 rounded-2xl shadow-xl p-6 sm:p-8">
           {error && (
             <div className="mb-6 p-4 bg-red-900 border border-red-500 rounded-lg text-red-300 text-center">
               {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <div>
               <label className="block text-sm font-medium text-white mb-2">
                 Kullanıcı Adı

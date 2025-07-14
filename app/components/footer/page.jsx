@@ -32,22 +32,22 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="bg-gray-900 border-t border-yellow-500 py-8">
+      <footer className="bg-gray-900 border-t border-yellow-500 py-6 sm:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {/* Şirket Bilgileri */}
-            <div className="md:col-span-2">
-              <h3 className="text-xl font-bold text-white mb-4">URAZ VİP TRANSFER</h3>
-              <p className="text-gray-300 mb-4">
+            <div className="sm:col-span-2 lg:col-span-2">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">URAZ VİP TRANSFER</h3>
+              <p className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
                 Antalya Havalimanı'ndan tüm destinasyonlara VIP transfer hizmeti. 
                 Lüks araçlar, profesyonel şoförler, 7/24 hizmet.
               </p>
-              <div className="flex space-x-4">
-                <div className="text-gray-300">
+              <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
+                <div className="text-gray-300 text-sm sm:text-base">
                   <p>📞 +90 242 123 45 67</p>
                   <p>📱 +90 532 123 45 67</p>
                 </div>
-                <div className="text-gray-300">
+                <div className="text-gray-300 text-sm sm:text-base">
                   <p>📧 info@urazvip.com</p>
                   <p>🌐 www.urazvip.com</p>
                 </div>
@@ -56,8 +56,8 @@ const Footer = () => {
 
             {/* Hızlı Linkler */}
             <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Hızlı Linkler</h4>
-              <ul className="space-y-2">
+              <h4 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Hızlı Linkler</h4>
+              <ul className="space-y-2 text-sm sm:text-base">
                 <li>
                   <a href="/" className="text-gray-300 hover:text-yellow-400 transition-colors">
                     Ana Sayfa
@@ -83,8 +83,8 @@ const Footer = () => {
 
             {/* Hizmetler */}
             <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Hizmetlerimiz</h4>
-              <ul className="space-y-2">
+              <h4 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Hizmetlerimiz</h4>
+              <ul className="space-y-2 text-sm sm:text-base">
                 <li className="text-gray-300">VIP Sedan Transfer</li>
                 <li className="text-gray-300">VIP SUV Transfer</li>
                 <li className="text-gray-300">VIP Van Transfer</li>
@@ -95,11 +95,11 @@ const Footer = () => {
           </div>
 
           {/* Alt Kısım */}
-          <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-300 text-sm">
+          <div className="border-t border-gray-700 mt-6 sm:mt-8 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center">
+            <div className="text-gray-300 text-xs sm:text-sm text-center sm:text-left">
               © 2024 URAZ VİP TRANSFER. Tüm hakları saklıdır.
             </div>
-            <div className="flex space-x-4 mt-4 md:mt-0">
+            <div className="flex space-x-4 mt-3 sm:mt-0">
               <button
                 onClick={() => setShowLoginModal(true)}
                 className="text-gray-400 hover:text-yellow-400 text-sm transition-colors"
@@ -114,9 +114,9 @@ const Footer = () => {
       {/* Login Modal */}
       {showLoginModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 border border-yellow-500 rounded-lg p-6 w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-white">Yönetici Girişi</h2>
+          <div className="bg-gray-900 border border-yellow-500 rounded-lg p-4 sm:p-6 w-full max-w-md">
+            <div className="flex justify-between items-center mb-3 sm:mb-4">
+              <h2 className="text-lg sm:text-xl font-bold text-white">Yönetici Girişi</h2>
               <button
                 onClick={() => {
                   setShowLoginModal(false);
@@ -129,7 +129,7 @@ const Footer = () => {
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div>
                 <label className="block text-sm font-medium text-white mb-2">
                   Kullanıcı Adı

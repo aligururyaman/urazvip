@@ -120,22 +120,22 @@ const AdminPanel = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-black py-6 sm:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-8">
-          <div className="flex justify-between items-center mb-4">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
             <div></div>
             <div>
-              <h1 className="text-3xl font-bold text-white mb-2">
+              <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 URAZ VİP TRANSFER - Admin Paneli
               </h1>
-              <p className="text-gray-300">
+              <p className="text-gray-300 text-sm sm:text-base">
                 Rezervasyon yönetimi ve onay işlemleri
               </p>
             </div>
             <button
               onClick={handleLogout}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+              className="bg-red-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-red-700 transition-colors text-sm sm:text-base"
             >
               Çıkış Yap
             </button>
@@ -143,7 +143,7 @@ const AdminPanel = () => {
         </div>
 
         {/* Filtreler */}
-        <div className="bg-gray-900 border border-yellow-500 rounded-lg p-4 mb-6">
+        <div className="bg-gray-900 border border-yellow-500 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setFilter('all')}
@@ -189,11 +189,11 @@ const AdminPanel = () => {
         </div>
 
         {/* Rezervasyon Listesi */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Sol Panel - Rezervasyon Listesi */}
           <div className="lg:col-span-2">
-            <div className="bg-gray-900 border border-yellow-500 rounded-lg p-6">
-              <h2 className="text-xl font-bold text-white mb-4">
+            <div className="bg-gray-900 border border-yellow-500 rounded-lg p-4 sm:p-6">
+              <h2 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">
                 Rezervasyon Listesi
               </h2>
               <div className="space-y-4 max-h-96 overflow-y-auto">
@@ -237,8 +237,8 @@ const AdminPanel = () => {
 
           {/* Sağ Panel - Rezervasyon Detayları */}
           <div className="lg:col-span-1">
-            <div className="bg-gray-900 border border-yellow-500 rounded-lg p-6">
-              <h2 className="text-xl font-bold text-white mb-4">
+            <div className="bg-gray-900 border border-yellow-500 rounded-lg p-4 sm:p-6">
+              <h2 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">
                 Rezervasyon Detayları
               </h2>
               
@@ -366,7 +366,7 @@ const AdminPanel = () => {
         </div>
 
         {/* İstatistikler */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="mt-6 sm:mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           <div className="bg-gray-900 border border-yellow-500 rounded-lg p-4 text-center">
             <div className="text-2xl font-bold text-yellow-500">{reservations.length}</div>
             <div className="text-sm text-gray-300">Toplam Rezervasyon</div>

@@ -44,9 +44,9 @@ const Navbar = () => {
   if (!mounted) return null;
 
   return (
-    <nav className="bg-gradient-to-r from-yellow-500 to-yellow-600 shadow-xl shadow-yellow-500/50 py-4 px-6">
+    <nav className="bg-gradient-to-r from-yellow-500 to-yellow-600 shadow-xl shadow-yellow-500/50 py-3 sm:py-4 px-4 sm:px-6">
       <div className="container mx-auto flex items-center justify-between">
-        <div className="text-3xl font-extrabold text-white tracking-tight font-['Montserrat'] cursor-pointer hover:text-gray-200 transition-colors duration-200">
+        <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight font-['Montserrat'] cursor-pointer hover:text-gray-200 transition-colors duration-200">
           <a href="/">URAZ VİP TRANSFER</a>
         </div>
         {/* Menü ve tema butonu */}
@@ -58,29 +58,29 @@ const Navbar = () => {
             </button>
           </div>
           {/* Masaüstü menü */}
-          <ul className="hidden md:flex space-x-8 items-center">
+          <ul className="hidden md:flex space-x-4 lg:space-x-8 items-center">
             <li>
-              <a href="/rezervasyon" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-lg">Rezervasyon</a>
+              <a href="/rezervasyon" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base lg:text-lg">Rezervasyon</a>
             </li>
             <li>
-              <a href="/iletisim" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-lg">İletişim</a>
+              <a href="/iletisim" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base lg:text-lg">İletişim</a>
             </li>
             <li>
-              <a href="/hakkimizda" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-lg">Hakkımızda</a>
+              <a href="/hakkimizda" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base lg:text-lg">Hakkımızda</a>
             </li>
           </ul>
         </div>
         {/* Menü (mobile) */}
         {menuOpen && (
-          <ul className="absolute top-16 left-0 w-full bg-gradient-to-r from-yellow-500 to-yellow-600 flex flex-col items-center space-y-4 py-6 z-50 md:hidden animate-fade-in">
+          <ul className="absolute top-full left-0 w-full bg-gradient-to-r from-yellow-500 to-yellow-600 flex flex-col items-center space-y-3 py-4 z-50 md:hidden animate-fade-in">
             <li>
-              <a href="/rezervasyon" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-lg" onClick={() => setMenuOpen(false)}>Rezervasyon</a>
+              <a href="/rezervasyon" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base" onClick={() => setMenuOpen(false)}>Rezervasyon</a>
             </li>
             <li>
-              <a href="/iletisim" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-lg" onClick={() => setMenuOpen(false)}>İletişim</a>
+              <a href="/iletisim" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base" onClick={() => setMenuOpen(false)}>İletişim</a>
             </li>
             <li>
-              <a href="/hakkimizda" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-lg" onClick={() => setMenuOpen(false)}>Hakkımızda</a>
+              <a href="/hakkimizda" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base" onClick={() => setMenuOpen(false)}>Hakkımızda</a>
             </li>
           </ul>
         )}

@@ -79,8 +79,8 @@ const Reservation = () => {
   };
 
   return (
-    <div className="bg-gray-900 rounded-2xl p-6 w-full max-w-4xl mx-auto shadow-2xl border border-yellow-500">
-      <h2 className="text-2xl font-bold text-white mb-6 text-center">
+    <div className="bg-gray-900 rounded-2xl p-4 sm:p-6 w-full max-w-4xl mx-auto shadow-2xl border border-yellow-500">
+      <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 text-center">
         VIP Transfer Rezervasyonu
       </h2>
       
@@ -94,9 +94,9 @@ const Reservation = () => {
         </div>
       )}
       
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
         {/* Transfer Bilgileri */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {/* Nereden */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
@@ -167,7 +167,7 @@ const Reservation = () => {
         </div>
 
         {/* İletişim Bilgileri */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {/* Ad Soyad */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
@@ -218,7 +218,7 @@ const Reservation = () => {
         </div>
 
         {/* Yolcu Sayısı ve Rezervasyon Butonu */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           {/* Yolcu Sayısı */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
@@ -239,7 +239,7 @@ const Reservation = () => {
           </div>
 
           {/* Rezervasyon Yap Butonu */}
-          <div className="md:col-span-2">
+          <div className="sm:col-span-2">
             <label className="block text-sm font-medium text-white mb-2">
               &nbsp;
             </label>

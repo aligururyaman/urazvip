@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
           `}
         </script>
       </head>
-      <body className={`min-h-screen w-full transition-colors duration-300 bg-black text-white ${montserrat.className}`}>
+      <body className={`min-h-screen w-full transition-colors duration-300 bg-black text-white ${montserrat.className} overflow-x-hidden`}>
 
           <Navbar />
           {children}

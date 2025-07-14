@@ -64,14 +64,14 @@ const ReservationDetailContent = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-black py-6 sm:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-gray-900 border border-yellow-500 rounded-2xl shadow-xl p-8">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">
+        <div className="bg-gray-900 border border-yellow-500 rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
               VIP Transfer Rezervasyon Detayları
             </h1>
-            <p className="text-gray-300">
+            <p className="text-gray-300 text-sm sm:text-base">
               Rezervasyon numaranız: <span className="text-yellow-500 font-bold">#{reservationData.id}</span>
             </p>
           </div>
@@ -86,10 +86,10 @@ const ReservationDetailContent = () => {
             </div>
           )}
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
             {/* Transfer Bilgileri */}
-            <div className="bg-gray-800 border border-yellow-500 rounded-lg p-6">
-              <h2 className="text-xl font-semibold text-white mb-4">
+            <div className="bg-gray-800 border border-yellow-500 rounded-lg p-4 sm:p-6">
+              <h2 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4">
                 Transfer Bilgileri
               </h2>
               <div className="space-y-3">
@@ -141,8 +141,8 @@ const ReservationDetailContent = () => {
             </div>
 
             {/* İletişim Bilgileri */}
-            <div className="bg-gray-800 border border-yellow-500 rounded-lg p-6">
-              <h2 className="text-xl font-semibold text-white mb-4">
+            <div className="bg-gray-800 border border-yellow-500 rounded-lg p-4 sm:p-6">
+              <h2 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4">
                 İletişim Bilgileri
               </h2>
               <div className="space-y-3">
@@ -178,7 +178,7 @@ const ReservationDetailContent = () => {
           )}
 
           {/* Butonlar */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Link
               href="/"
               className="flex-1 bg-gray-600 text-white py-3 px-6 rounded-lg font-semibold text-center hover:bg-gray-700 transition-colors duration-200"

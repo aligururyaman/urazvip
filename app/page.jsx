@@ -9,16 +9,16 @@ export default function Home() {
   return (
    <div className="bg-black">
     {/* Rezervasyon - Üstte tam genişlik */}
-    <div className="p-8 lg:p-14 bg-black">
+    <div className="p-4 sm:p-6 lg:p-14 bg-black">
       <div className="max-w-4xl mx-auto">
         <Reservation />
       </div>
     </div>
     
     {/* Hero ve Cars - Alt kısım */}
-    <div className="p-8 lg:p-14 bg-black">
+    <div className="p-4 sm:p-6 lg:p-14 bg-black">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
           <div>
             <Hero />
           </div>
@@ -30,7 +30,7 @@ export default function Home() {
     </div>
     
     {/* Transfer Bölgeleri */}
-    <div className="p-8 lg:p-14 bg-black">
+    <div className="p-4 sm:p-6 lg:p-14 bg-black">
       <Cards /> 
     </div>
    </div>

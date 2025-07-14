@@ -1,9 +1,9 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-const ReservationDetailPage = () => {
+const ReservationDetailContent = () => {
   const searchParams = useSearchParams();
   const [reservationData, setReservationData] = useState(null);
   const [contactForm, setContactForm] = useState({
@@ -311,6 +311,21 @@ const ReservationDetailPage = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const ReservationDetailPage = () => {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
+          <p className="text-gray-300">Yükleniyor...</p>
+        </div>
+      </div>
+    }>
+      <ReservationDetailContent />
+    </Suspense>
   );
 };
 

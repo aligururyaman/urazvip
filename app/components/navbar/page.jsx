@@ -60,6 +60,9 @@ const Navbar = () => {
           {/* Masaüstü menü */}
           <ul className="hidden md:flex space-x-4 lg:space-x-8 items-center">
             <li>
+              <a href="/araclar" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base lg:text-lg">Araçlarımız</a>
+            </li>
+            <li>
               <a href="/rezervasyon" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base lg:text-lg">Rezervasyon</a>
             </li>
             <li>
@@ -73,6 +76,9 @@ const Navbar = () => {
         {/* Menü (mobile) */}
         {menuOpen && (
           <ul className="absolute top-full left-0 w-full bg-gradient-to-r from-yellow-500 to-yellow-600 flex flex-col items-center space-y-3 py-4 z-50 md:hidden animate-fade-in">
+            <li>
+              <a href="/araclar" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base" onClick={() => setMenuOpen(false)}>Araçlarımız</a>
+            </li>
             <li>
               <a href="/rezervasyon" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base" onClick={() => setMenuOpen(false)}>Rezervasyon</a>
             </li>

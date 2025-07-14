@@ -1,4 +1,4 @@
-[
+export const locationsData = [
     { "name": "Kundu", "price": "₺1300", "duration": "30 dk.", "image": "/kundu.jpg" },
     { "name": "Lara", "price": "₺1300", "duration": "20dk.", "image": "/lara.jpg" },
     { "name": "Serik", "price": "₺1200", "duration": "30 dk.", "image": "/serik.jpg" },
@@ -30,7 +30,7 @@
     { "name": "Çolaklı", "price": "₺1900", "duration": "1 sa.", "image": "/colakli.jpg" },
     { "name": "Şehiriçi", "price": "₺1300", "duration": "1 sa.", "image": "/sehirici.jpg" },
     { "name": "Konyaaltı", "price": "₺1400", "duration": "1 sa.", "image": "/konyaalti.jpg" },
-    { "name": "Olympus", "price": "₺3000", "duration": "1 sa.", "image": "/olympus.jpg" },
-    { "name": "Kızılcahamam", "price": "₺1900", "duration": "1 sa.", "image": "/kizilcahamam.jpg" }
+    { "name": "Olympos", "price": "₺3000", "duration": "1 sa.", "image": "/olympos.jpg" }
+];
 
-  ] 
+export default locationsData; 

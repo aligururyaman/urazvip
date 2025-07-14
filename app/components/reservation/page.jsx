@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import locationsData from '../../data/locations.json';
+import locationsData from '../../data/locations.js';
 import { addReservation } from '../../../lib/firebaseService';
 import { sendReservationReceivedEmail } from '../../../lib/emailService';
 

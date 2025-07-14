@@ -5,39 +5,25 @@ import AnimatedTestimonials from '../ui/animated-testimonials';
 const Cars = () => {
   const vipVehicles = [
     {
-      name: "VIP Sedan",
-      designation: "Mercedes E-Class / BMW 5 Series",
-      quote: "Lüks ve konforun mükemmel uyumu. 1-3 yolcu için ideal, şık tasarım ve premium hizmet. Klimalı, WiFi destekli, profesyonel şoför ile Antalya'nın en prestijli transfer deneyimi.",
-      image: "/vip-sedan.jpg",
-      src: "/vip-sedan.jpg"
+      name: "Mercedes Vito",
+      designation: "9+1 Kişilik | Konforlu VIP Minivan",
+      quote: "Mercedes Vito, 9+1 kişilik kapasitesiyle küçük gruplar ve aileler için ideal. Geniş iç hacmi, konforlu koltukları ve lüks donanımıyla şehir içi ve havalimanı transferlerinde üst düzey rahatlık sunar.",
+      image: "/vito.jpg", // Fotoğrafı public/vito.jpg olarak ekleyebilirsin
+      src: "/vito.jpg"
     },
     {
-      name: "VIP SUV",
-      designation: "Mercedes GLE / BMW X5",
-      quote: "Geniş ve konforlu SUV deneyimi. 1-6 yolcu kapasitesi, bagaj alanı geniş, yüksek konfor seviyesi. Uzun yolculuklar için mükemmel seçim, lüks iç mekan ve güvenlik özellikleri.",
-      image: "/vip-suv.jpg",
-      src: "/vip-suv.jpg"
+      name: "Mercedes Sprinter",
+      designation: "Orta: 10+1 | Ekstra Uzun: 18+1 Kişilik",
+      quote: "Mercedes Sprinter, orta ve ekstra uzun versiyonlarıyla kalabalık gruplar için mükemmel bir seçimdir. Geniş bagaj hacmi, ferah iç mekan ve yüksek yolcu kapasitesiyle konforlu yolculuklar sağlar.",
+      image: "/sprinter.jpg", // Fotoğrafı public/sprinter.jpg olarak ekleyebilirsin
+      src: "/sprinter.jpg"
     },
     {
-      name: "VIP Van",
-      designation: "Mercedes Vito / VW Caravelle",
-      quote: "Büyük gruplar için ideal çözüm. 1-8 yolcu kapasitesi, geniş bagaj alanı, konforlu koltuklar. Aile ve grup seyahatleri için mükemmel, profesyonel hizmet kalitesi.",
-      image: "/vip-van.jpg",
-      src: "/vip-van.jpg"
-    },
-    {
-      name: "Lüks Sedan",
-      designation: "Mercedes S-Class / BMW 7 Series",
-      quote: "Ultra lüks sedan deneyimi. 1-3 yolcu için en üst düzey konfor, premium malzemeler, gelişmiş teknoloji. VIP misafirler için özel hizmet, şoför ve araç kalitesi garantisi.",
-      image: "/luxury-sedan.jpg",
-      src: "/luxury-sedan.jpg"
-    },
-    {
-      name: "Lüks SUV",
-      designation: "Mercedes GLS / Range Rover",
-      quote: "Ultra lüks SUV deneyimi. 1-6 yolcu kapasitesi, en üst düzey konfor ve güvenlik. Premium hizmet kalitesi, özel şoför, lüks iç mekan ve gelişmiş teknoloji özellikleri.",
-      image: "/luxury-suv.jpg",
-      src: "/luxury-suv.jpg"
+      name: "Volkswagen Crafter",
+      designation: "18+1 veya 20+1 Kişilik | Büyük Grup Minibüsü",
+      quote: "Volkswagen Crafter, 18+1 ve 20+1 kişilik seçenekleriyle büyük gruplar için idealdir. Modern tasarımı, geniş iç hacmi ve güvenlik donanımlarıyla uzun yolculuklarda konfor ve güven sunar.",
+      image: "/crafter.jpg", // Fotoğrafı public/crafter.jpg olarak ekleyebilirsin
+      src: "/crafter.jpg"
     }
   ];
 

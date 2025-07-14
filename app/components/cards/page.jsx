@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import TransferCard from "../TransferCards";
 import Reservation from "../reservation/page";
-import locationsData from "../../data/locations.json";
+import locationsData from "../../data/locations.js";
 
 const Cards = () => {
   const [isReservationOpen, setIsReservationOpen] = useState(false);

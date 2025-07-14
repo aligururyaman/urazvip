@@ -10,31 +10,41 @@ const TransferCard = ({ title, duration, price, image }) => {
   };
 
   return (
-    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md h-[200px] sm:h-[240px] md:h-[270px] bg-gray-900 border border-yellow-500 rounded-2xl overflow-hidden shadow-lg shadow-yellow-500 transition-transform hover:scale-105">
-      <div className="h-[50px] sm:h-[90px] md:h-[150px] bg-black">
+    <div className="bg-gray-900 border-2 border-yellow-500 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group">
+      {/* Image Section */}
+      <div className="relative h-48 md:h-56 lg:h-64 overflow-hidden">
         {image ? (
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-200">
-            Fotoğraf
+          <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
+            <span className="text-gray-400 text-lg font-medium">Fotoğraf</span>
           </div>
         )}
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300"></div>
       </div>
-      <div className="p-3 sm:p-4 h-[180px] sm:h-[200px] flex flex-col">
-        <div className="text-white flex flex-row items-center justify-between">
-          <h2 className="text-lg sm:text-xl font-semibold mb-1">{title}</h2>
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-xs sm:text-sm text-yellow-400">{duration}</p>
-            <p className="text-xs sm:text-sm text-yellow-400">{price}</p>
+
+      {/* Content Section */}
+      <div className="p-4 md:p-5 lg:p-6">
+        {/* Title and Price */}
+        <div className="flex items-start justify-between mb-4">
+          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-white leading-tight flex-1 mr-4">
+            {title}
+          </h3>
+          <div className="text-right flex-shrink-0">
+            <p className="text-sm md:text-base text-yellow-400 font-medium">{duration}</p>
+            <p className="text-lg md:text-xl lg:text-2xl text-yellow-500 font-bold">{price}</p>
           </div>
         </div>
+
+        {/* Button */}
         <button 
           onClick={handleReservation}
-          className="mt-2 sm:mt-4 bg-yellow-500 text-black py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg text-sm sm:text-base hover:bg-yellow-400 transition-transform hover:scale-105"
+          className="w-full bg-yellow-500 text-black py-3 md:py-4 px-4 md:px-6 rounded-xl font-semibold text-base md:text-lg hover:bg-yellow-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
         >
           Hemen Yer Ayırt
         </button>

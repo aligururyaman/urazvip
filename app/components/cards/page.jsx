@@ -13,26 +13,7 @@ const Cards = () => {
         Havaalanı Transfer Bölgeleri
       </h1>
       
-      {/* Mobile Reservation Toggle */}
-      <div className="block lg:hidden mb-6 sm:mb-8">
-        <button
-          onClick={() => setIsReservationOpen(!isReservationOpen)}
-          className="w-full bg-yellow-500 text-black py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-200 flex items-center justify-between"
-        >
-          <span className="text-base sm:text-lg">Rezervasyon Yap</span>
-          <svg
-            className={`w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-200 ${isReservationOpen ? 'rotate-180' : ''}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-        
-        {/* Collapsible Reservation Form */}
 
-      </div>
 
       {/* Desktop Reservation - Always Visible */}
       {/* Cards Grid */}

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import locationsData from '../../data/locations.json';
 import { addReservation } from '../../../lib/firebaseService';
+import { sendReservationReceivedEmail } from '../../../lib/emailService';
 
 const Reservation = () => {
   const router = useRouter();
@@ -11,7 +12,9 @@ const Reservation = () => {
     to: '',
     date: '',
     time: '',
-    passengers: 1
+    passengers: 1,
+    email: '',
+    fullName: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,8 +44,23 @@ const Reservation = () => {
         // Firebase'e rezervasyon ekle
         const result = await addReservation(reservationData);
 
+        // E-posta gönder (eğer iletişim bilgileri varsa)
+        if (result.id) {
+          try {
+            await sendReservationReceivedEmail({
+              ...result,
+              contactInfo: {
+                email: formData.email || '',
+                fullName: formData.fullName || 'Değerli Müşterimiz'
+              }
+            });
+          } catch (emailError) {
+            console.error('E-posta gönderilemedi:', emailError);
+          }
+        }
+
         // Başarı mesajı göster
-        setSubmitMessage('Rezervasyonunuz başarıyla alındı! En kısa sürede sizinle iletişime geçeceğiz.');
+        setSubmitMessage('Rezervasyonunuz başarıyla alındı! E-posta adresinize bilgilendirme gönderilmiştir.');
         
         // 2 saniye sonra rezervasyon detay sayfasına yönlendir
         setTimeout(() => {
@@ -144,6 +162,41 @@ const Reservation = () => {
               onChange={handleInputChange}
               required
               className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+            />
+          </div>
+        </div>
+
+        {/* İletişim Bilgileri */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Ad Soyad */}
+          <div>
+            <label className="block text-sm font-medium text-white mb-2">
+              Ad Soyad *
+            </label>
+            <input
+              type="text"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              placeholder="Adınız ve soyadınız"
+            />
+          </div>
+
+          {/* E-posta */}
+          <div>
+            <label className="block text-sm font-medium text-white mb-2">
+              E-posta *
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              placeholder="E-posta adresiniz"
             />
           </div>
         </div>

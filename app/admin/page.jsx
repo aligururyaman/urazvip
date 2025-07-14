@@ -6,6 +6,7 @@ import {
   updateReservationStatus, 
   deleteReservation 
 } from '../../lib/firebaseService';
+import { sendReservationApprovedEmail } from '../../lib/emailService';
 
 const AdminPanel = () => {
   const router = useRouter();
@@ -37,6 +38,20 @@ const AdminPanel = () => {
   const handleUpdateReservationStatus = async (id, newStatus) => {
     try {
       await updateReservationStatus(id, newStatus);
+      
+      // Eğer rezervasyon onaylandıysa e-posta gönder
+      if (newStatus === 'Onaylandı') {
+        const reservation = reservations.find(r => r.id === id);
+        if (reservation && reservation.contactInfo?.email) {
+          try {
+            await sendReservationApprovedEmail(reservation);
+            console.log('Onay e-postası gönderildi');
+          } catch (emailError) {
+            console.error('Onay e-postası gönderilemedi:', emailError);
+          }
+        }
+      }
+      
       // Rezervasyonları yeniden yükle
       await loadReservations();
     } catch (error) {

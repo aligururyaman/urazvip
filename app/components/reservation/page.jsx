@@ -14,7 +14,8 @@ const Reservation = () => {
     time: '',
     passengers: 1,
     email: '',
-    fullName: ''
+    fullName: '',
+    phone: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,22 +39,21 @@ const Reservation = () => {
         // Rezervasyon verilerini hazırla
         const reservationData = {
           ...formData,
+          contactInfo: {
+            fullName: formData.fullName,
+            email: formData.email,
+            phone: formData.phone
+          },
           selectedLocation: locationsData.find(loc => loc.name === formData.to)
         };
 
         // Firebase'e rezervasyon ekle
         const result = await addReservation(reservationData);
 
-        // E-posta gönder (eğer iletişim bilgileri varsa)
+        // E-posta gönder
         if (result.id) {
           try {
-            await sendReservationReceivedEmail({
-              ...result,
-              contactInfo: {
-                email: formData.email || '',
-                fullName: formData.fullName || 'Değerli Müşterimiz'
-              }
-            });
+            await sendReservationReceivedEmail(result);
           } catch (emailError) {
             console.error('E-posta gönderilemedi:', emailError);
           }
@@ -167,7 +167,7 @@ const Reservation = () => {
         </div>
 
         {/* İletişim Bilgileri */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Ad Soyad */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
@@ -197,6 +197,22 @@ const Reservation = () => {
               required
               className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
               placeholder="E-posta adresiniz"
+            />
+          </div>
+
+          {/* Telefon */}
+          <div>
+            <label className="block text-sm font-medium text-white mb-2">
+              Telefon *
+            </label>
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              placeholder="Telefon numaranız"
             />
           </div>
         </div>

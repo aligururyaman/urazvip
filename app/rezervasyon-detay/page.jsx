@@ -7,13 +7,6 @@ import { getReservationById, updateReservation } from '../../lib/firebaseService
 const ReservationDetailContent = () => {
   const searchParams = useSearchParams();
   const [reservationData, setReservationData] = useState(null);
-  const [contactForm, setContactForm] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    address: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
@@ -21,10 +14,12 @@ const ReservationDetailContent = () => {
     if (reservationId) {
       const loadReservation = async () => {
         try {
-          const reservation = await getReservationById(reservationId);
-          if (reservation) {
-            setReservationData(reservation);
-          }
+                  const reservation = await getReservationById(reservationId);
+        if (reservation) {
+          console.log('Rezervasyon verisi:', reservation);
+          console.log('İletişim bilgileri:', reservation.contactInfo);
+          setReservationData(reservation);
+        }
         } catch (error) {
           console.error('Rezervasyon yüklenirken hata:', error);
         }
@@ -38,44 +33,7 @@ const ReservationDetailContent = () => {
     }
   }, [searchParams]);
 
-  const handleContactFormChange = (e) => {
-    const { name, value } = e.target;
-    setContactForm(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
 
-  const handleContactSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitMessage('');
-
-    try {
-      // İletişim bilgilerini rezervasyona ekle
-      const updateData = {
-        contactInfo: contactForm,
-        status: 'Onay Bekliyor',
-        contactSubmittedAt: new Date().toISOString()
-      };
-
-      // Firebase'de rezervasyonu güncelle
-      await updateReservation(reservationData.id, updateData);
-
-      // Yerel state'i güncelle
-      setReservationData(prev => ({
-        ...prev,
-        ...updateData
-      }));
-      
-      setSubmitMessage('İletişim bilgileriniz başarıyla kaydedildi! En kısa sürede sizinle iletişime geçeceğiz.');
-    } catch (error) {
-      console.error('İletişim bilgileri kaydedilirken hata:', error);
-      setSubmitMessage('Bir hata oluştu. Lütfen tekrar deneyin.');
-    }
-
-    setIsSubmitting(false);
-  };
 
   const formatDate = (dateString) => {
     if (!dateString) return '';
@@ -182,95 +140,28 @@ const ReservationDetailContent = () => {
               </div>
             </div>
 
-            {/* İletişim Bilgileri Formu */}
+            {/* İletişim Bilgileri */}
             <div className="bg-gray-800 border border-yellow-500 rounded-lg p-6">
               <h2 className="text-xl font-semibold text-white mb-4">
                 İletişim Bilgileri
               </h2>
-              {reservationData.contactInfo ? (
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">Ad Soyad:</span>
-                    <span className="font-medium text-white">{reservationData.contactInfo.fullName}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">E-posta:</span>
-                    <span className="font-medium text-white">{reservationData.contactInfo.email}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">Telefon:</span>
-                    <span className="font-medium text-white">{reservationData.contactInfo.phone}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-300">Adres:</span>
-                    <span className="font-medium text-white">{reservationData.contactInfo.address}</span>
-                  </div>
-                  <div className="mt-4 p-3 bg-green-900 border border-green-500 rounded text-green-300 text-sm">
-                    ✓ İletişim bilgileri kaydedildi
-                  </div>
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-gray-300">Ad Soyad:</span>
+                  <span className="font-medium text-white">{reservationData.contactInfo?.fullName || reservationData.fullName || 'Belirtilmemiş'}</span>
                 </div>
-              ) : (
-                <form onSubmit={handleContactSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-white mb-1">
-                      Ad Soyad *
-                    </label>
-                    <input
-                      type="text"
-                      name="fullName"
-                      value={contactForm.fullName}
-                      onChange={handleContactFormChange}
-                      required
-                      className="w-full px-3 py-2 border border-yellow-500 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-white mb-1">
-                      E-posta *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={contactForm.email}
-                      onChange={handleContactFormChange}
-                      required
-                      className="w-full px-3 py-2 border border-yellow-500 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-white mb-1">
-                      Telefon *
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={contactForm.phone}
-                      onChange={handleContactFormChange}
-                      required
-                      className="w-full px-3 py-2 border border-yellow-500 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-white mb-1">
-                      Adres
-                    </label>
-                    <textarea
-                      name="address"
-                      value={contactForm.address}
-                      onChange={handleContactFormChange}
-                      rows="3"
-                      className="w-full px-3 py-2 border border-yellow-500 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-yellow-500 text-black py-3 px-6 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-200 disabled:opacity-50"
-                  >
-                    {isSubmitting ? 'Kaydediliyor...' : 'İletişim Bilgilerini Kaydet'}
-                  </button>
-                </form>
-              )}
+                <div className="flex justify-between">
+                  <span className="text-gray-300">E-posta:</span>
+                  <span className="font-medium text-white">{reservationData.contactInfo?.email || reservationData.email || 'Belirtilmemiş'}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-300">Telefon:</span>
+                  <span className="font-medium text-white">{reservationData.contactInfo?.phone || reservationData.phone || 'Belirtilmemiş'}</span>
+                </div>
+                <div className="mt-4 p-3 bg-blue-900 border border-blue-500 rounded text-blue-300 text-sm">
+                  ✓ Rezervasyonunuz alınmıştır. En kısa sürede sizinle iletişime geçeceğiz.
+                </div>
+              </div>
             </div>
           </div>
 

@@ -6,7 +6,7 @@ import {
   updateReservationStatus, 
   deleteReservation 
 } from '../../lib/firebaseService';
-import { sendReservationApprovedEmail } from '../../lib/emailService';
+import { sendReservationApprovedEmail, sendTestEmail } from '../../lib/emailService';
 
 const AdminPanel = () => {
   const router = useRouter();
@@ -343,6 +343,26 @@ const AdminPanel = () => {
               )}
             </div>
           </div>
+        </div>
+
+        {/* Test E-posta Butonu */}
+        <div className="mt-8 mb-4">
+          <button
+            onClick={async () => {
+              try {
+                console.log('Test e-postası gönderiliyor...');
+                const result = await sendTestEmail();
+                console.log('Test sonucu:', result);
+                alert(result.message);
+              } catch (error) {
+                console.error('Test hatası:', error);
+                alert('Test e-postası gönderilemedi: ' + error.message);
+              }
+            }}
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Test E-postası Gönder
+          </button>
         </div>
 
         {/* İstatistikler */}

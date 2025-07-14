@@ -30,6 +30,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+        <script type="text/javascript">
+          {`
+            (function() {
+              emailjs.init("8zmAtR8eZVXS3DJRc");
+            })();
+          `}
+        </script>
+      </head>
       <body className={`min-h-screen w-full transition-colors duration-300 bg-black text-white ${montserrat.className}`}>
 
           <Navbar />

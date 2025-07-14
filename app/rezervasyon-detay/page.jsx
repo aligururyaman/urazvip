@@ -2,6 +2,7 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { getReservationById, updateReservation } from '../../lib/firebaseService';
 
 const ReservationDetailContent = () => {
   const searchParams = useSearchParams();
@@ -18,11 +19,14 @@ const ReservationDetailContent = () => {
   useEffect(() => {
     const reservationId = searchParams.get('id');
     if (reservationId) {
-      const loadReservation = () => {
-        const reservations = JSON.parse(localStorage.getItem('reservations') || '[]');
-        const reservation = reservations.find(r => r.id === parseInt(reservationId));
-        if (reservation) {
-          setReservationData(reservation);
+      const loadReservation = async () => {
+        try {
+          const reservation = await getReservationById(reservationId);
+          if (reservation) {
+            setReservationData(reservation);
+          }
+        } catch (error) {
+          console.error('Rezervasyon yüklenirken hata:', error);
         }
       };
       
@@ -49,23 +53,24 @@ const ReservationDetailContent = () => {
 
     try {
       // İletişim bilgilerini rezervasyona ekle
-      const updatedReservation = {
-        ...reservationData,
+      const updateData = {
         contactInfo: contactForm,
         status: 'Onay Bekliyor',
         contactSubmittedAt: new Date().toISOString()
       };
 
-      // Rezervasyonu güncelle
-      const reservations = JSON.parse(localStorage.getItem('reservations') || '[]');
-      const updatedReservations = reservations.map(r => 
-        r.id === reservationData.id ? updatedReservation : r
-      );
-      localStorage.setItem('reservations', JSON.stringify(updatedReservations));
+      // Firebase'de rezervasyonu güncelle
+      await updateReservation(reservationData.id, updateData);
 
-      setReservationData(updatedReservation);
+      // Yerel state'i güncelle
+      setReservationData(prev => ({
+        ...prev,
+        ...updateData
+      }));
+      
       setSubmitMessage('İletişim bilgileriniz başarıyla kaydedildi! En kısa sürede sizinle iletişime geçeceğiz.');
     } catch (error) {
+      console.error('İletişim bilgileri kaydedilirken hata:', error);
       setSubmitMessage('Bir hata oluştu. Lütfen tekrar deneyin.');
     }
 

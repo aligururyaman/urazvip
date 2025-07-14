@@ -1,6 +1,11 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { 
+  getReservations, 
+  updateReservationStatus, 
+  deleteReservation 
+} from '../../lib/firebaseService';
 
 const AdminPanel = () => {
   const router = useRouter();
@@ -20,23 +25,33 @@ const AdminPanel = () => {
     }
   }, []);
 
-  const loadReservations = () => {
-    const storedReservations = JSON.parse(localStorage.getItem('reservations') || '[]');
-    setReservations(storedReservations);
+  const loadReservations = async () => {
+    try {
+      const storedReservations = await getReservations();
+      setReservations(storedReservations);
+    } catch (error) {
+      console.error('Rezervasyonlar yüklenirken hata:', error);
+    }
   };
 
-  const updateReservationStatus = (id, newStatus) => {
-    const updatedReservations = reservations.map(reservation => 
-      reservation.id === id ? { ...reservation, status: newStatus } : reservation
-    );
-    localStorage.setItem('reservations', JSON.stringify(updatedReservations));
-    setReservations(updatedReservations);
+  const handleUpdateReservationStatus = async (id, newStatus) => {
+    try {
+      await updateReservationStatus(id, newStatus);
+      // Rezervasyonları yeniden yükle
+      await loadReservations();
+    } catch (error) {
+      console.error('Rezervasyon durumu güncellenirken hata:', error);
+    }
   };
 
-  const deleteReservation = (id) => {
-    const updatedReservations = reservations.filter(reservation => reservation.id !== id);
-    localStorage.setItem('reservations', JSON.stringify(updatedReservations));
-    setReservations(updatedReservations);
+  const handleDeleteReservation = async (id) => {
+    try {
+      await deleteReservation(id);
+      // Rezervasyonları yeniden yükle
+      await loadReservations();
+    } catch (error) {
+      console.error('Rezervasyon silinirken hata:', error);
+    }
   };
 
   const formatDate = (dateString) => {
@@ -271,19 +286,19 @@ const AdminPanel = () => {
                     <h3 className="font-semibold text-white mb-2">Durum Güncelle</h3>
                     <div className="space-y-2">
                       <button
-                        onClick={() => updateReservationStatus(selectedReservation.id, 'Onaylandı')}
+                        onClick={() => handleUpdateReservationStatus(selectedReservation.id, 'Onaylandı')}
                         className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors"
                       >
                         Onayla
                       </button>
                       <button
-                        onClick={() => updateReservationStatus(selectedReservation.id, 'İptal Edildi')}
+                        onClick={() => handleUpdateReservationStatus(selectedReservation.id, 'İptal Edildi')}
                         className="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition-colors"
                       >
                         İptal Et
                       </button>
                       <button
-                        onClick={() => updateReservationStatus(selectedReservation.id, 'Beklemede')}
+                        onClick={() => handleUpdateReservationStatus(selectedReservation.id, 'Beklemede')}
                         className="w-full bg-yellow-600 text-white py-2 px-4 rounded-lg hover:bg-yellow-700 transition-colors"
                       >
                         Beklemede
@@ -296,7 +311,7 @@ const AdminPanel = () => {
                     <button
                       onClick={() => {
                         if (confirm('Bu rezervasyonu silmek istediğinizden emin misiniz?')) {
-                          deleteReservation(selectedReservation.id);
+                          handleDeleteReservation(selectedReservation.id);
                           setSelectedReservation(null);
                         }
                       }}

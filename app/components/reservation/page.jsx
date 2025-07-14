@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import locationsData from '../../data/locations.json';
+import { addReservation } from '../../../lib/firebaseService';
 
 const Reservation = () => {
   const router = useRouter();
@@ -31,29 +32,25 @@ const Reservation = () => {
 
     if (formData.to && formData.date && formData.time) {
       try {
-        // Rezervasyon verilerini localStorage'a kaydet
+        // Rezervasyon verilerini hazırla
         const reservationData = {
           ...formData,
-          id: Date.now(),
-          status: 'Beklemede',
-          createdAt: new Date().toISOString(),
           selectedLocation: locationsData.find(loc => loc.name === formData.to)
         };
 
-        // Mevcut rezervasyonları al
-        const existingReservations = JSON.parse(localStorage.getItem('reservations') || '[]');
-        existingReservations.push(reservationData);
-        localStorage.setItem('reservations', JSON.stringify(existingReservations));
+        // Firebase'e rezervasyon ekle
+        const result = await addReservation(reservationData);
 
         // Başarı mesajı göster
         setSubmitMessage('Rezervasyonunuz başarıyla alındı! En kısa sürede sizinle iletişime geçeceğiz.');
         
         // 2 saniye sonra rezervasyon detay sayfasına yönlendir
         setTimeout(() => {
-          router.push(`/rezervasyon-detay?id=${reservationData.id}`);
+          router.push(`/rezervasyon-detay?id=${result.id}`);
         }, 2000);
 
       } catch (error) {
+        console.error('Rezervasyon hatası:', error);
         setSubmitMessage('Bir hata oluştu. Lütfen tekrar deneyin.');
       }
     } else {

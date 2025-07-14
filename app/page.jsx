@@ -1,17 +1,36 @@
+"use client"
 import Image from "next/image";
 import Hero from "./components/hero/page";
 import Cards from "./components/cards/page";
 import Reservation from "./components/reservation/page";
 import Cars from "./components/cars/page";
+import { useState } from "react";
 
 
 export default function Home() {
+  const [showReservation, setShowReservation] = useState(false);
   return (
    <div className="bg-black">
-    {/* Rezervasyon - Üstte tam genişlik */}
+    {/* Rezervasyon - Üstte tam genişlik, açılır/kapanır */}
     <div className="p-4 sm:p-6 lg:p-14 bg-black">
       <div className="max-w-4xl mx-auto">
-        <Reservation />
+        <button
+          className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-xl shadow-lg transition-colors duration-200 text-lg sm:text-xl mb-4 flex items-center justify-center gap-2"
+          onClick={() => setShowReservation((prev) => !prev)}
+          aria-expanded={showReservation}
+          aria-controls="reservation-panel"
+        >
+          {showReservation ? "Rezervasyon Formunu Kapat" : "VIP Transfer Rezervasyonu Yap"}
+          <span className={`transform transition-transform duration-300 ${showReservation ? "rotate-180" : "rotate-0"}`}>
+            ▼
+          </span>
+        </button>
+        <div
+          id="reservation-panel"
+          className={`overflow-hidden transition-all duration-500 ${showReservation ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"}`}
+        >
+          <Reservation />
+        </div>
       </div>
     </div>
     

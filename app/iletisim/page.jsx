@@ -43,7 +43,7 @@ export default function IletisimPage() {
                   </svg>
                 </div>
                 <a
-                  href="https://wa.me/905439430719"
+                  href="https://wa.me/+905439430719"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-400 transition-colors duration-200 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-center"

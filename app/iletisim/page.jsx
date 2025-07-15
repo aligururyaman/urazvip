@@ -101,8 +101,7 @@ export default function IletisimPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-white">{t('email_label')}</h3>
-                <p className="text-gray-300">info@urazvip.com</p>
-                <p className="text-gray-300">rezervasyon@urazvip.com</p>
+                <p className="text-gray-300">urazviptransfer@gmail.com</p>
               </div>
               </div>
 

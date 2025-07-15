@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react'
 import { useI18n } from '../../../lib/i18nContext';
+import { useRouter } from 'next/navigation';
 
 const HamburgerIcon = ({ open }) => (
   <div className="flex flex-col justify-center items-center w-8 h-8 cursor-pointer md:hidden">
@@ -16,6 +17,8 @@ const Navbar = () => {
   const [mounted, setMounted] = useState(false);
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
   const { t, language, changeLanguage } = useI18n();
+  const router = useRouter();
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
 
   useEffect(() => {
     // Initial theme from localStorage or system
@@ -74,6 +77,11 @@ const Navbar = () => {
           </div>
           {/* Masaüstü menü */}
           <ul className="hidden md:flex space-x-4 lg:space-x-8 items-center">
+            {pathname !== '/' && (
+              <li>
+                <a href="/" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base lg:text-lg">{t('home_page')}</a>
+              </li>
+            )}
             <li>
               <a href="/araclar" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base lg:text-lg">{t('menu_vehicles')}</a>
             </li>

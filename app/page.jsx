@@ -4,6 +4,7 @@ import Hero from "./components/hero/page";
 import Cards from "./components/cards/page";
 import Reservation from "./components/reservation/page";
 import Cars from "./components/cars/page";
+import OurServices from "./components/our-services/OurServices";
 import { useState } from "react";
 import { useI18n } from '../lib/i18nContext';
 
@@ -51,9 +52,8 @@ export default function Home() {
     </div>
     
     {/* Transfer Bölgeleri */}
-    <div className="p-4 sm:p-6 lg:p-14 bg-black">
-      <Cards /> 
-    </div>
+    <OurServices />
+    <Cards />
    </div>
   );
 }

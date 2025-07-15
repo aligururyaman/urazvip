@@ -14,123 +14,108 @@ const Hero = () => {
   const vipDestinations = [
     {
       name: "Belek",
-      designation: t('belek_designation'),
-      quote: t('belek_quote'),
+      designation: t("belek_designation") || "Golf Sahaları, Lüks Oteller, Deniz Manzarası, VIP Hizmet",
+      quote: t("belek_description"),
       image: "/belek.jpg",
-      src: "/belek.jpg",
-      features: ["Golf Sahaları", "Lüks Oteller", "Deniz Manzarası", "VIP Hizmet"]
+      src: "/belek.jpg"
     },
     {
       name: "Kemer",
-      designation: t('kemer_designation'),
-      quote: t('kemer_quote'),
+      designation: t("kemer_designation") || "Tahtalı Dağı, Kristal Deniz, Doğal Koylar, Lüks Oteller",
+      quote: t("kemer_description"),
       image: "/kemer.jpg",
-      src: "/kemer.jpg",
-      features: ["Tahtalı Dağı", "Kristal Deniz", "Doğal Koylar", "Lüks Oteller"]
+      src: "/kemer.jpg"
     },
     {
       name: "Kaş",
-      designation: t('kas_designation'),
-      quote: t('kas_quote'),
+      designation: t("kas_designation") || "Mavi Yolculuk, Dalış Noktaları, Antik Kalıntılar, Temiz Deniz",
+      quote: t("kas_description"),
       image: "/kas.jpg",
-      src: "/kas.jpg",
-      features: ["Mavi Yolculuk", "Dalış Noktaları", "Antik Kalıntılar", "Temiz Deniz"]
+      src: "/kas.jpg"
     },
     {
       name: "Alanya",
-      designation: t('alanya_designation'),
-      quote: t('alanya_quote'),
+      designation: t("alanya_designation") || "Alanya Kalesi, Kleopatra Plajı, Dim Çayı, Tarihi Atmosfer",
+      quote: t("alanya_description"),
       image: "/alanya.jpg",
-      src: "/alanya.jpg",
-      features: ["Alanya Kalesi", "Kleopatra Plajı", "Dim Çayı", "Tarihi Atmosfer"]
+      src: "/alanya.jpg"
     },
     {
       name: "Side",
-      designation: t('side_designation'),
-      quote: t('side_quote'),
+      designation: t("side_designation") || "Antik Tiyatro, Apollo Tapınağı, Muhteşem Plajlar, Tarihi Miras",
+      quote: t("side_description"),
       image: "/side.jpg",
-      src: "/side.jpg",
-      features: ["Antik Tiyatro", "Apollo Tapınağı", "Muhteşem Plajlar", "Tarihi Miras"]
+      src: "/side.jpg"
     },
     {
       name: "Kalkan",
-      designation: t('kalkan_designation'),
-      quote: t('kalkan_quote'),
+      designation: t("kalkan_designation") || "Mavi Bayrak Plajlar, Yat Limanı, Likya Yolu, Muhteşem Koylar",
+      quote: t("kalkan_description"),
       image: "/kalkan.jpg",
-      src: "/kalkan.jpg",
-      features: ["Mavi Bayrak Plajlar", "Yat Limanı", "Likya Yolu", "Muhteşem Koylar"]
+      src: "/kalkan.jpg"
     },
     {
       name: "Lara",
-      designation: t('lara_designation'),
-      quote: t('lara_quote'),
+      designation: t("lara_designation") || "En Uzun Plaj, Lüks Oteller, Kristal Deniz, Altın Kumlar",
+      quote: t("lara_description"),
       image: "/lara.jpg",
-      src: "/lara.jpg",
-      features: ["En Uzun Plaj", "Lüks Oteller", "Kristal Deniz", "Altın Kumlar"]
+      src: "/lara.jpg"
     },
     {
       name: "Kundu",
-      designation: t('kundu_designation'),
-      quote: t('kundu_quote'),
+      designation: t("kundu_designation") || "Havalimanı Yakını, İş Merkezleri, Stratejik Konum, Lüks Oteller",
+      quote: t("kundu_description"),
       image: "/kundu.jpg",
-      src: "/kundu.jpg",
-      features: ["Havalimanı Yakını", "İş Merkezleri", "Stratejik Konum", "Lüks Oteller"]
+      src: "/kundu.jpg"
     },
     {
       name: "Adrasan",
-      designation: t('adrasan_designation'),
-      quote: t('adrasan_quote'),
+      designation: t("adrasan_designation") || "Olympos Milli Parkı, Doğal Koy, Sakin Atmosfer, Huzurlu Tatil",
+      quote: t("adrasan_description"),
       image: "/adrasan.jpg",
-      src: "/adrasan.jpg",
-      features: ["Olympos Milli Parkı", "Doğal Koy", "Sakin Atmosfer", "Huzurlu Tatil"]
+      src: "/adrasan.jpg"
     },
     {
       name: "Tekirova",
-      designation: t('tekirova_designation'),
-      quote: t('tekirova_quote'),
+      designation: t("tekirova_designation") || "Doğa Yürüyüşü, Macera Sporları, Muhteşem Manzara, Temiz Hava",
+      quote: t("tekirova_description"),
       image: "/tekirova.jpg",
-      src: "/tekirova.jpg",
-      features: ["Doğa Yürüyüşü", "Macera Sporları", "Muhteşem Manzara", "Temiz Hava"]
+      src: "/tekirova.jpg"
     },
     {
       name: "Göynük",
-      designation: t('goynuk_designation'),
-      quote: t('goynuk_quote'),
+      designation: t("goynuk_designation") || "Aile Dostu, Sakin Atmosfer, Kristal Deniz, Huzurlu Ortam",
+      quote: t("goynuk_description"),
       image: "/goynuk.jpg",
-      src: "/goynuk.jpg",
-      features: ["Aile Dostu", "Sakin Atmosfer", "Kristal Deniz", "Huzurlu Ortam"]
+      src: "/goynuk.jpg"
     },
     {
       name: "Çamyuva",
-      designation: t('camyuva_designation'),
-      quote: t('camyuva_quote'),
+      designation: t("camyuva_designation") || "Çam Ağaçları, Doğal Koy, Lüks Oteller, Doğal Cennet",
+      quote: t("camyuva_description"),
       image: "/camyuva.jpg",
-      src: "/camyuva.jpg",
-      features: ["Çam Ağaçları", "Doğal Koy", "Lüks Oteller", "Doğal Cennet"]
+      src: "/camyuva.jpg"
     },
     {
       name: "Kiriş",
-      designation: t('kiris_designation'),
-      quote: t('kiris_quote'),
+      designation: t("kiris_designation") || "Golf Sahaları, Lüks Oteller, Deniz Manzarası, Yeşil Alanlar",
+      quote: t("kiris_description"),
       image: "/kiris.jpg",
-      src: "/kiris.jpg",
-      features: ["Golf Sahaları", "Lüks Oteller", "Deniz Manzarası", "Yeşil Alanlar"]
+      src: "/kiris.jpg"
     },
     {
       name: "Mahmutlar",
-      designation: t('mahmutlar_designation'),
-      quote: t('mahmutlar_quote'),
+      designation: t("mahmutlar_designation") || "Doğal Güzellikler, Tarihi Kalıntılar, Muhteşem Manzara, Eşsiz Atmosfer",
+      quote: t("mahmutlar_description"),
       image: "/mahmutlar.jpg",
-      src: "/mahmutlar.jpg",
-      features: ["Doğal Güzellikler", "Tarihi Kalıntılar", "Muhteşem Manzara", "Eşsiz Atmosfer"]
+      src: "/mahmutlar.jpg"
     },
     {
       name: "Olympos",
-      designation: t('olympos_designation'),
-      quote: t('olympos_quote'),
+      designation: t("olympos_designation") || "Antik Likya Kenti, Olympos Milli Parkı, Yanartaş, Doğal Cennet",
+      quote: t("olympos_description"),
       image: "/olympos.jpg",
-      src: "/olympos.jpg",
-      features: ["Antik Likya Kenti", "Olympos Milli Parkı", "Yanartaş", "Doğal Cennet"]
+      src: "/olympos.jpg"
     }
   ];
 

@@ -87,8 +87,7 @@ const Footer = () => {
                   </p>
                 </div>
                 <div className="text-gray-300 text-sm sm:text-base">
-                  <p>📧 info@urazvip.com</p>
-                  <p>📧 rezervasyon@urazvip.com</p>
+                  <p>📧 <a href="mailto:urazviptransfer@gmail.com" className="hover:underline">urazviptransfer@gmail.com</a></p>
                   <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=Antalya+Havalimanı+Antalya+Türkiye" target="_blank" rel="noopener noreferrer" className="hover:underline">Antalya Havalimanı, Antalya, Türkiye</a></p>
                 </div>
               </div>

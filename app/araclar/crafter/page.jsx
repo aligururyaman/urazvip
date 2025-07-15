@@ -6,7 +6,7 @@ export default function CrafterDetayPage() {
   const ozellikler = [
     {
       icon: "👥",
-      title: "18+1 veya 20+1 Yolcu Kapasitesi",
+      title: "15+1 Yolcu Kapasitesi",
       description: "En yüksek yolcu kapasitesi"
     },
     {

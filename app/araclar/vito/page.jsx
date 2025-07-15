@@ -6,7 +6,7 @@ export default function VitoDetayPage() {
   const ozellikler = [
     {
       icon: "👥",
-      title: "9+1 Yolcu Kapasitesi",
+      title: "8+1 Yolcu Kapasitesi",
       description: "Geniş ve konforlu koltuk düzeni"
     },
     {

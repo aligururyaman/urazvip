@@ -19,6 +19,7 @@ const Navbar = () => {
   const { t, language, changeLanguage } = useI18n();
   const router = useRouter();
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+  const showHomeButton = pathname !== '/';
 
   useEffect(() => {
     // Initial theme from localStorage or system
@@ -77,7 +78,7 @@ const Navbar = () => {
           </div>
           {/* Masaüstü menü */}
           <ul className="hidden md:flex space-x-4 lg:space-x-8 items-center">
-            {pathname !== '/' && (
+            {showHomeButton && (
               <li>
                 <a href="/" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base lg:text-lg">{t('home_page')}</a>
               </li>

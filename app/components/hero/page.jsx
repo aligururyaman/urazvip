@@ -125,7 +125,7 @@ const Hero = () => {
       <div className="w-full">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-white mb-2">
-            VIP Destinasyonlar
+            {t('vip_destinations_title') || 'VIP Destinasyonlar'}
           </h2>
           <p className="text-gray-300">
             Antalya'nın en prestijli noktalarına VIP transfer
@@ -141,7 +141,7 @@ const Hero = () => {
       {/* Enhanced Header Section */}
       <div className="text-center">
 
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3 bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
           {t('vip_destinations_title')}
         </h2>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">

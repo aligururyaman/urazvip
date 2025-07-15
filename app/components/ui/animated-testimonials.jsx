@@ -2,6 +2,7 @@
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
 
 const AnimatedTestimonials = ({
   testimonials,
@@ -35,6 +36,15 @@ const AnimatedTestimonials = ({
 
   const isActive = (index) => {
     return index === active;
+  };
+
+  const router = useRouter();
+
+  const handleImageClick = () => {
+    const name = testimonials[active].name?.toLowerCase();
+    if (name.includes('vito')) router.push('/araclar/vito');
+    else if (name.includes('sprinter')) router.push('/araclar/sprinter');
+    else if (name.includes('crafter')) router.push('/araclar/crafter');
   };
 
   if (randomRotates.length === 0) {
@@ -77,7 +87,10 @@ const AnimatedTestimonials = ({
                     duration: 0.4,
                     ease: "easeInOut",
                   }}
-                  className="absolute inset-0 origin-bottom">
+                  className="absolute inset-0 origin-bottom"
+                  onClick={isActive(index) ? handleImageClick : undefined}
+                  style={{ cursor: isActive(index) ? 'pointer' : 'default' }}
+                >
                   <img
                     src={testimonial.image || testimonial.src || '/placeholder.jpg'}
                     alt={testimonial.name}

@@ -78,6 +78,18 @@ const Reservation = () => {
     setIsSubmitting(false);
   };
 
+  const fromOptions = [
+    { value: 'Antalya Havalimanı', label: 'Antalya Havalimanı' },
+    { value: 'Şehir İçi', label: 'Şehir İçi' },
+  ];
+
+  // İlçeler (şehir içi için)
+  const districtOptions = [
+    { value: 'Havalimanı', label: 'Havalimanı' },
+    { value: 'Diğer', label: 'Diğer' },
+    ...locationsData.map(loc => ({ value: loc.name, label: loc.name }))
+  ];
+
   return (
     <div className="bg-gray-900 rounded-2xl p-4 sm:p-6 w-full max-w-4xl mx-auto shadow-2xl border border-yellow-500">
       <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 text-center">
@@ -107,9 +119,10 @@ const Reservation = () => {
               value={formData.from}
               onChange={handleInputChange}
               className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-              disabled
             >
-              <option value="Antalya Havalimanı">Antalya Havalimanı</option>
+              {fromOptions.map(opt => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
             </select>
           </div>
 
@@ -126,11 +139,15 @@ const Reservation = () => {
               className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
             >
               <option value="">Destinasyon seçiniz</option>
-              {locationsData.map((location) => (
-                <option key={location.name} value={location.name}>
-                  {location.name} - {location.price}
-                </option>
-              ))}
+              {formData.from === 'Şehir İçi'
+                ? districtOptions.map(opt => (
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  ))
+                : locationsData.map(location => (
+                    <option key={location.name} value={location.name}>
+                      {location.name} - {location.price}
+                    </option>
+                  ))}
             </select>
           </div>
 

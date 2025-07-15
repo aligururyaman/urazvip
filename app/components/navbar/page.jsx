@@ -44,7 +44,7 @@ const Navbar = () => {
   if (!mounted) return null;
 
   return (
-    <nav className="bg-gradient-to-r from-yellow-500 to-yellow-600 shadow-xl shadow-yellow-500/50 py-3 sm:py-4 px-4 sm:px-6">
+    <nav className="bg-gradient-to-r from-yellow-500 to-yellow-600 shadow-xl shadow-yellow-500/50 py-3 sm:py-4 px-4 sm:px-6 relative">
       <div className="container mx-auto flex items-center justify-between">
         <div className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight font-['Montserrat'] cursor-pointer hover:text-gray-200 transition-colors duration-200">
           <a href="/">URAZ VİP TRANSFER</a>
@@ -73,24 +73,37 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        {/* Menü (mobile) */}
-        {menuOpen && (
-          <ul className="absolute top-full left-0 w-full bg-gradient-to-r from-yellow-500 to-yellow-600 flex flex-col items-center space-y-3 py-4 z-50 md:hidden animate-fade-in">
-            <li>
-              <a href="/araclar" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base" onClick={() => setMenuOpen(false)}>Araçlarımız</a>
-            </li>
-            <li>
-              <a href="/rezervasyon" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base" onClick={() => setMenuOpen(false)}>Rezervasyon</a>
-            </li>
-            <li>
-              <a href="/iletisim" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base" onClick={() => setMenuOpen(false)}>İletişim</a>
-            </li>
-            <li>
-              <a href="/hakkimizda" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-base" onClick={() => setMenuOpen(false)}>Hakkımızda</a>
-            </li>
-          </ul>
-        )}
       </div>
+      
+      {/* Mobil Menü - Fixed pozisyon ile en üstte */}
+      {menuOpen && (
+        <div className="fixed inset-0 top-0 left-0 w-full h-full bg-black/50 z-50 md:hidden" onClick={() => setMenuOpen(false)}>
+          <div className="absolute top-0 left-0 w-full bg-gradient-to-r from-yellow-500 to-yellow-600 shadow-xl">
+            <div className="container mx-auto px-4 py-4">
+              <div className="flex justify-between items-center mb-4">
+                <div className="text-xl font-extrabold text-white">Menü</div>
+                <button onClick={() => setMenuOpen(false)} className="text-white text-2xl font-bold">
+                  ×
+                </button>
+              </div>
+              <ul className="flex flex-col space-y-4 pb-4">
+                <li>
+                  <a href="/araclar" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-lg block py-2" onClick={() => setMenuOpen(false)}>Araçlarımız</a>
+                </li>
+                <li>
+                  <a href="/rezervasyon" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-lg block py-2" onClick={() => setMenuOpen(false)}>Rezervasyon</a>
+                </li>
+                <li>
+                  <a href="/iletisim" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-lg block py-2" onClick={() => setMenuOpen(false)}>İletişim</a>
+                </li>
+                <li>
+                  <a href="/hakkimizda" className="text-white hover:text-gray-300 transition-colors duration-200 font-medium text-lg block py-2" onClick={() => setMenuOpen(false)}>Hakkımızda</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }

@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/navbar/page";
 import Footer from "./components/footer/page";
 import { Montserrat } from 'next/font/google';
+import { I18nProvider } from '../lib/i18nContext';
 
 
 const geistSans = Geist({
@@ -41,11 +42,11 @@ export default function RootLayout({ children }) {
         </script>
       </head>
       <body className={`min-h-screen w-full transition-colors duration-300 bg-black text-white ${montserrat.className} overflow-x-hidden`}>
-
+        <I18nProvider>
           <Navbar />
           {children}
           <Footer />
-
+        </I18nProvider>
       </body>
     </html>
   );

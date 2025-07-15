@@ -1,41 +1,44 @@
 "use client";
 import Link from "next/link";
-
-const vehicles = [
-  {
-    name: "Mercedes Vito",
-    image: "/vitotanitim.jpg",
-    description: "Geniş iç hacim, deri koltuklar, LED aydınlatma.",
-    link: "/araclar/vito",
-    button: "Vito Detayları"
-  },
-  {
-    name: "Mercedes Sprinter",
-    image: "/sprinter-tanitim.jpg",
-    description: "Yüksek kapasite, konforlu seyahat, güvenli sürüş.",
-    link: "/araclar/sprinter",
-    button: "Sprinter Detayları"
-  },
-  {
-    name: "Volkswagen Crafter",
-    image: "/vvtanitim.jpg",
-    description: "Büyük kapasite, dayanıklı yapı, ekonomik yakıt.",
-    link: "/araclar/crafter",
-    button: "Crafter Detayları"
-  }
-];
+import { useI18n } from '../../lib/i18nContext';
 
 export default function AraclarPage() {
+  const { t } = useI18n();
+
+  const vehicles = [
+    {
+      name: t('vito_name'),
+      image: "/vitotanitim.jpg",
+      description: t('vito_description'),
+      link: "/araclar/vito",
+      button: t('vito_button')
+    },
+    {
+      name: t('sprinter_name'),
+      image: "/sprinter-tanitim.jpg",
+      description: t('sprinter_description'),
+      link: "/araclar/sprinter",
+      button: t('sprinter_button')
+    },
+    {
+      name: t('crafter_name'),
+      image: "/vvtanitim.jpg",
+      description: t('crafter_description'),
+      link: "/araclar/crafter",
+      button: t('crafter_button')
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       {/* Header Section */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4">
-            Araçlarımız
+            {t('vehicles_title')}
           </h1>
           <p className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto">
-            Lüks ve konforu bir araya getiren premium araç filomuzla hizmetinizdeyiz
+            {t('vehicles_subtitle')}
           </p>
         </div>
 
@@ -72,7 +75,7 @@ export default function AraclarPage() {
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/80 to-transparent backdrop-blur-sm border-t border-[#FFD700]/30 p-4 sm:p-6 transform translate-y-0 group-hover:translate-y-0 transition-transform duration-300">
                   <div className="space-y-3 sm:space-y-4">
                     <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">
-                      {vehicle.name} <span className="text-[#FFD700]">VIP</span>
+                      {vehicle.name} <span className="text-[#FFD700]">{t('vip_label')}</span>
                     </h2>
                     <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
                       {vehicle.description}
@@ -97,7 +100,7 @@ export default function AraclarPage() {
         {/* Bottom CTA */}
         <div className="text-center mt-12 sm:mt-16 lg:mt-20">
           <p className="text-gray-400 text-sm sm:text-base mb-4">
-            Detaylı bilgi için araçlarımızdan birini seçin
+            {t('vehicles_cta_text')}
           </p>
           <div className="flex justify-center space-x-2">
             <div className="w-2 h-2 bg-[#FFD700] rounded-full animate-pulse"></div>

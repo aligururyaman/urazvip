@@ -113,7 +113,7 @@ const AnimatedTestimonials = ({
               {testimonials[active].name}
             </h3>
             <p className="text-sm text-yellow-400 mb-3">
-              {testimonials[active].designation}
+              "{testimonials[active].designation}"
             </p>
             <motion.p className="text-base text-gray-300">
               {testimonials[active].quote.split(" ").map((word, index) => (

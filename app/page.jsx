@@ -5,10 +5,12 @@ import Cards from "./components/cards/page";
 import Reservation from "./components/reservation/page";
 import Cars from "./components/cars/page";
 import { useState } from "react";
-
+import { useI18n } from '../lib/i18nContext';
 
 export default function Home() {
   const [showReservation, setShowReservation] = useState(false);
+  const { t } = useI18n();
+  
   return (
    <div className="bg-black">
     {/* Rezervasyon - Üstte tam genişlik, açılır/kapanır */}
@@ -20,7 +22,7 @@ export default function Home() {
           aria-expanded={showReservation}
           aria-controls="reservation-panel"
         >
-          {showReservation ? "Rezervasyon Formunu Kapat" : "VIP Transfer Rezervasyonu Yap"}
+          {showReservation ? t('reservation_form_close') : t('reservation_form_open')}
           <span className={`transform transition-transform duration-300 ${showReservation ? "rotate-180" : "rotate-0"}`}>
             ▼
           </span>

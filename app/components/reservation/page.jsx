@@ -4,9 +4,11 @@ import { useRouter } from 'next/navigation';
 import locationsData from '../../data/locations.js';
 import { addReservation } from '../../../lib/firebaseService';
 import { sendReservationReceivedEmail } from '../../../lib/emailService';
+import { useI18n } from '../../../lib/i18nContext';
 
 const Reservation = () => {
   const router = useRouter();
+  const { t } = useI18n();
   const [formData, setFormData] = useState({
     from: 'Antalya Havalimanı',
     to: '',
@@ -20,6 +22,18 @@ const Reservation = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+
+  const fromOptions = [
+    { value: 'Antalya Havalimanı', label: 'Antalya Havalimanı' },
+    { value: 'Şehir İçi', label: 'Şehir İçi' },
+  ];
+
+  // İlçeler (şehir içi için)
+  const districtOptions = [
+    { value: 'Havalimanı', label: 'Havalimanı' },
+    { value: 'Diğer', label: 'Diğer' },
+    ...locationsData.map(loc => ({ value: loc.name, label: loc.name }))
+  ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -60,7 +74,7 @@ const Reservation = () => {
         }
 
         // Başarı mesajı göster
-        setSubmitMessage('Rezervasyonunuz başarıyla alındı! E-posta adresinize bilgilendirme gönderilmiştir.');
+        setSubmitMessage(t('success'));
         
         // 2 saniye sonra rezervasyon detay sayfasına yönlendir
         setTimeout(() => {
@@ -69,36 +83,24 @@ const Reservation = () => {
 
       } catch (error) {
         console.error('Rezervasyon hatası:', error);
-        setSubmitMessage('Bir hata oluştu. Lütfen tekrar deneyin.');
+        setSubmitMessage(t('error'));
       }
     } else {
-      setSubmitMessage('Lütfen tüm gerekli alanları doldurun.');
+      setSubmitMessage(t('required'));
     }
     
     setIsSubmitting(false);
   };
 
-  const fromOptions = [
-    { value: 'Antalya Havalimanı', label: 'Antalya Havalimanı' },
-    { value: 'Şehir İçi', label: 'Şehir İçi' },
-  ];
-
-  // İlçeler (şehir içi için)
-  const districtOptions = [
-    { value: 'Havalimanı', label: 'Havalimanı' },
-    { value: 'Diğer', label: 'Diğer' },
-    ...locationsData.map(loc => ({ value: loc.name, label: loc.name }))
-  ];
-
   return (
     <div className="bg-gray-900 rounded-2xl p-4 sm:p-6 w-full max-w-4xl mx-auto shadow-2xl border border-yellow-500">
       <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 text-center">
-        VIP Transfer Rezervasyonu
+        {t('vip_reservation')}
       </h2>
       
       {submitMessage && (
         <div className={`mb-6 p-4 rounded-lg text-center ${
-          submitMessage.includes('başarıyla') 
+          submitMessage.includes('başarıyla') || submitMessage.includes('success') || submitMessage.includes('erfolgreich') || submitMessage.includes('успешно')
             ? 'bg-green-900 border border-green-500 text-green-300' 
             : 'bg-red-900 border border-red-500 text-red-300'
         }`}>
@@ -112,7 +114,7 @@ const Reservation = () => {
           {/* Nereden */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
-              Nereden
+              {t('from')}
             </label>
             <select
               name="from"
@@ -129,7 +131,7 @@ const Reservation = () => {
           {/* Nereye */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
-              Nereye
+              {t('to')}
             </label>
             <select
               name="to"
@@ -138,7 +140,7 @@ const Reservation = () => {
               required
               className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
             >
-              <option value="">Destinasyon seçiniz</option>
+              <option value="">{t('select_destination')}</option>
               {formData.from === 'Şehir İçi'
                 ? districtOptions.map(opt => (
                     <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -154,7 +156,7 @@ const Reservation = () => {
           {/* Tarih */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
-              Tarih
+              {t('date')}
             </label>
             <input
               type="date"
@@ -170,7 +172,7 @@ const Reservation = () => {
           {/* Saat */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
-              Saat
+              {t('time')}
             </label>
             <input
               type="time"
@@ -188,7 +190,7 @@ const Reservation = () => {
           {/* Ad Soyad */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
-              Ad Soyad *
+              {t('fullName')}
             </label>
             <input
               type="text"
@@ -204,7 +206,7 @@ const Reservation = () => {
           {/* E-posta */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
-              E-posta *
+              {t('email')}
             </label>
             <input
               type="email"
@@ -220,7 +222,7 @@ const Reservation = () => {
           {/* Telefon */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
-              Telefon *
+              {t('phone')}
             </label>
             <input
               type="tel"
@@ -239,7 +241,7 @@ const Reservation = () => {
           {/* Yolcu Sayısı */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
-              Yolcu Sayısı
+              {t('passengers')}
             </label>
             <select
               name="passengers"
@@ -265,7 +267,7 @@ const Reservation = () => {
               disabled={isSubmitting}
               className="w-full bg-yellow-500 text-black py-3 px-6 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-200 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? 'Rezervasyon Alınıyor...' : 'VIP Transfer Rezervasyonu Yap'}
+              {isSubmitting ? 'Gönderiliyor...' : t('submit')}
             </button>
           </div>
         </div>

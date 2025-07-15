@@ -1,15 +1,56 @@
-import React from 'react';
+"use client"
+import React, { useState, useEffect } from 'react';
+import { useI18n } from '../../lib/i18nContext';
 
 export default function IletisimPage() {
+  const { t } = useI18n();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Don't render until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-black py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h1 className="text-3xl font-bold text-white mb-2">
+              İletişim
+            </h1>
+            <p className="text-gray-300">
+              Bizimle iletişime geçin, size yardımcı olmaktan mutluluk duyarız
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Placeholder content during SSR */}
+            <div className="bg-gray-900 border border-yellow-500 rounded-2xl shadow-xl p-8">
+              <h2 className="text-2xl font-bold text-white mb-6">
+                İletişim Bilgileri
+              </h2>
+            </div>
+            <div className="bg-gray-900 border border-yellow-500 rounded-2xl shadow-xl p-8">
+              <h2 className="text-2xl font-bold text-white mb-6">
+                Mesaj Gönderin
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <div className="min-h-screen bg-black py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-bold text-white mb-2">
-            İletişim
+            {t('contact_title')}
           </h1>
           <p className="text-gray-300">
-            Bizimle iletişime geçin, size yardımcı olmaktan mutluluk duyarız
+            {t('contact_subtitle')}
           </p>
         </div>
 
@@ -17,7 +58,7 @@ export default function IletisimPage() {
           {/* İletişim Bilgileri */}
           <div className="bg-gray-900 border border-yellow-500 rounded-2xl shadow-xl p-8">
             <h2 className="text-2xl font-bold text-white mb-6">
-              İletişim Bilgileri
+              {t('contact_info')}
             </h2>
             
             <div className="space-y-6">
@@ -29,7 +70,7 @@ export default function IletisimPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">Telefon</h3>
+                    <h3 className="font-semibold text-white">{t('phone_label')}</h3>
                     <p className="text-gray-300 group-hover:underline">0 543 943 07 19</p>
                   </div>
                 </a>
@@ -48,7 +89,7 @@ export default function IletisimPage() {
                   rel="noopener noreferrer"
                   className="inline-block bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-400 transition-colors duration-200 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-center"
                 >
-                  7/24 WhatsApp Hattı
+                  {t('whatsapp_line')}
                 </a>
               </div>
 
@@ -59,7 +100,7 @@ export default function IletisimPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-white">E-posta</h3>
+                <h3 className="font-semibold text-white">{t('email_label')}</h3>
                 <p className="text-gray-300">info@urazvip.com</p>
                 <p className="text-gray-300">rezervasyon@urazvip.com</p>
               </div>
@@ -74,7 +115,7 @@ export default function IletisimPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">Adres</h3>
+                    <h3 className="font-semibold text-white">{t('address_label')}</h3>
                     <p className="text-gray-300 group-hover:underline">Antalya Havalimanı</p>
                     <p className="text-gray-300 group-hover:underline">Antalya, Türkiye</p>
                   </div>
@@ -88,9 +129,9 @@ export default function IletisimPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-white">Çalışma Saatleri</h3>
-                <p className="text-gray-300">7/24 Hizmet</p>
-                <p className="text-gray-300">Her gün açık</p>
+                <h3 className="font-semibold text-white">{t('working_hours')}</h3>
+                <p className="text-gray-300">{t('service_24_7')}</p>
+                <p className="text-gray-300">{t('open_everyday')}</p>
               </div>
               </div>
             </div>
@@ -99,13 +140,13 @@ export default function IletisimPage() {
           {/* İletişim Formu */}
           <div className="bg-gray-900 border border-yellow-500 rounded-2xl shadow-xl p-8">
             <h2 className="text-2xl font-bold text-white mb-6">
-              Mesaj Gönderin
+              {t('send_message')}
             </h2>
             
             <form className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-white mb-2">
-                  Ad Soyad
+                  {t('fullName')}
                 </label>
                 <input
                   type="text"
@@ -116,7 +157,7 @@ export default function IletisimPage() {
 
               <div>
                 <label className="block text-sm font-medium text-white mb-2">
-                  E-posta
+                  {t('email')}
                 </label>
                 <input
                   type="email"
@@ -127,7 +168,7 @@ export default function IletisimPage() {
 
               <div>
                 <label className="block text-sm font-medium text-white mb-2">
-                  Telefon
+                  {t('phone')}
                 </label>
                 <input
                   type="tel"
@@ -137,27 +178,27 @@ export default function IletisimPage() {
 
               <div>
                 <label className="block text-sm font-medium text-white mb-2">
-                  Konu
+                  {t('subject')}
                 </label>
                 <select className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
-                  <option value="">Konu seçiniz</option>
-                  <option value="rezervasyon">Rezervasyon</option>
-                  <option value="bilgi">Bilgi Talebi</option>
-                  <option value="sikayet">Şikayet</option>
-                  <option value="oneri">Öneri</option>
-                  <option value="diger">Diğer</option>
+                  <option value="">{t('subject_select')}</option>
+                  <option value="rezervasyon">{t('subject_reservation')}</option>
+                  <option value="bilgi">{t('subject_info')}</option>
+                  <option value="sikayet">{t('subject_complaint')}</option>
+                  <option value="oneri">{t('subject_suggestion')}</option>
+                  <option value="diger">{t('subject_other')}</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-white mb-2">
-                  Mesajınız
+                  {t('message')}
                 </label>
                 <textarea
                   rows="4"
                   required
                   className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                  placeholder="Mesajınızı buraya yazın..."
+                  placeholder={t('message_placeholder')}
                 />
               </div>
 
@@ -165,7 +206,7 @@ export default function IletisimPage() {
                 type="submit"
                 className="w-full bg-yellow-500 text-black py-3 px-6 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-200 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
               >
-                Mesaj Gönder
+                {t('send_message_btn')}
               </button>
             </form>
           </div>

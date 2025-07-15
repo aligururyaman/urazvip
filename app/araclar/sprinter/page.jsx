@@ -6,7 +6,7 @@ export default function SprinterDetayPage() {
   const ozellikler = [
     {
       icon: "👥",
-      title: "12+1 Yolcu Kapasitesi",
+      title: "10+1 veya 18+1 Yolcu Kapasitesi",
       description: "Büyük grup transferleri için ideal"
     },
     {

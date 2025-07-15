@@ -39,17 +39,25 @@ const Footer = () => {
             <div className="sm:col-span-2 lg:col-span-2">
               <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">URAZ VİP TRANSFER</h3>
               <p className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
-                Antalya Havalimanı'ndan tüm destinasyonlara VIP transfer hizmeti. 
+                Antalya Havalimanı'ndan tüm destinasyonlara ve Antalya'nın her yerine VIP transfer hizmeti. 
                 Lüks araçlar, profesyonel şoförler, 7/24 hizmet.
               </p>
               <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
                 <div className="text-gray-300 text-sm sm:text-base">
-                  <p>📞 +90 242 123 45 67</p>
-                  <p>📱 +90 532 123 45 67</p>
+                  <p>📞 <a href="tel:05439430719" className="hover:underline">0 543 943 07 19</a></p>
+                  <p>
+                     <span className="inline-block align-middle mr-1">
+                       <svg viewBox="0 0 32 32" fill="currentColor" width="18" height="18" className="text-green-500 inline">
+                         <path d="M16 3C9.373 3 4 8.373 4 15c0 2.637.86 5.08 2.36 7.11L4 29l7.13-2.33A12.93 12.93 0 0016 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22c-1.98 0-3.89-.52-5.56-1.5l-.4-.23-4.23 1.38 1.38-4.13-.26-.42A9.97 9.97 0 016 15c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm5.07-7.75c-.28-.14-1.65-.81-1.9-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.44-2.25-1.4-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.32.42-.48.14-.16.18-.28.28-.46.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47-.16-.01-.34-.01-.52-.01-.18 0-.48.07-.73.34-.25.27-.97.95-.97 2.3s.99 2.67 1.13 2.85c.14.18 1.95 2.98 4.73 4.06.66.28 1.18.45 1.58.58.66.21 1.26.18 1.73.11.53-.08 1.65-.67 1.89-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.18-.53-.32z" />
+                       </svg>
+                     </span>
+                     <a href="https://wa.me/+905439430719" target="_blank" rel="noopener noreferrer" className="hover:underline">7/24 WhatsApp Hattı</a>
+                  </p>
                 </div>
                 <div className="text-gray-300 text-sm sm:text-base">
                   <p>📧 info@urazvip.com</p>
-                  <p>🌐 www.urazvip.com</p>
+                  <p>📧 rezervasyon@urazvip.com</p>
+                  <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=Antalya+Havalimanı+Antalya+Türkiye" target="_blank" rel="noopener noreferrer" className="hover:underline">Antalya Havalimanı, Antalya, Türkiye</a></p>
                 </div>
               </div>
             </div>
@@ -85,10 +93,13 @@ const Footer = () => {
             <div>
               <h4 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Hizmetlerimiz</h4>
               <ul className="space-y-2 text-sm sm:text-base">
-                <li className="text-gray-300">VIP Sedan Transfer</li>
-                <li className="text-gray-300">VIP SUV Transfer</li>
-                <li className="text-gray-300">VIP Van Transfer</li>
+                <li className="text-gray-300">Şehiriçi Transfer</li>
+                <li className="text-gray-300">Havaalanı Transfer</li>
+                <li className="text-gray-300">Mercedes Vito VİP Transfer</li>
+                <li className="text-gray-300">Mercedes Sprinter VİP Transfer</li>
+                <li className="text-gray-300">Volkswagen Crafter VİP Transfer</li>
                 <li className="text-gray-300">Lüks Araç Transfer</li>
+                <li className="text-gray-300">Şehirler Arası Transfer</li>
                 <li className="text-gray-300">7/24 Hizmet</li>
               </ul>
             </div>

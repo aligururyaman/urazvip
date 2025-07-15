@@ -2,14 +2,55 @@
 import React, { useState, useEffect } from 'react';
 import { useI18n } from '../../lib/i18nContext';
 import Head from 'next/head';
+import { sendTestEmail } from "../../lib/emailService";
 
 export default function IletisimPage() {
   const { t } = useI18n();
   const [mounted, setMounted] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage("");
+    try {
+      // EmailJS ile mail gönder
+      const response = await sendTestEmail({
+        ...formData,
+        to_email: "urazviptransfer@gmail.com",
+        name: formData.fullName,
+        message: formData.message,
+        reply_to: formData.email,
+        from_email: formData.email
+      });
+      if (response.success) {
+        setSubmitMessage(t('contact_success'));
+        setFormData({ fullName: "", email: "", phone: "", subject: "", message: "" });
+      } else {
+        setSubmitMessage(t('contact_error'));
+      }
+    } catch (err) {
+      setSubmitMessage(t('contact_error'));
+    }
+    setIsSubmitting(false);
+  };
 
   // Don't render until mounted to prevent hydration mismatch
   if (!mounted) {
@@ -106,15 +147,17 @@ export default function IletisimPage() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                                <div className="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-white">{t('email_label')}</h3>
-                  <p className="text-gray-300">urazviptransfer@gmail.com</p>
-                </div>
+                  <a href="mailto:urazviptransfer@gmail.com" className="flex items-start space-x-4 group">
+                    <div className="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-yellow-400 transition-colors duration-200">
+                      <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white">{t('email_label')}</h3>
+                      <p className="text-gray-300 group-hover:underline">urazviptransfer@gmail.com</p>
+                    </div>
+                  </a>
                 </div>
 
                 <div className="flex items-start space-x-4">
@@ -154,13 +197,16 @@ export default function IletisimPage() {
                 {t('send_message')}
               </h2>
               
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label className="block text-sm font-medium text-white mb-2">
                     {t('fullName')}
                   </label>
                   <input
                     type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   />
@@ -172,6 +218,9 @@ export default function IletisimPage() {
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   />
@@ -183,6 +232,9 @@ export default function IletisimPage() {
                   </label>
                   <input
                     type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   />
                 </div>
@@ -191,7 +243,12 @@ export default function IletisimPage() {
                   <label className="block text-sm font-medium text-white mb-2">
                     {t('subject')}
                   </label>
-                  <select className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                  <select
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                  >
                     <option value="">{t('subject_select')}</option>
                     <option value="rezervasyon">{t('subject_reservation')}</option>
                     <option value="bilgi">{t('subject_info')}</option>
@@ -207,17 +264,27 @@ export default function IletisimPage() {
                   </label>
                   <textarea
                     rows="4"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                     placeholder={t('message_placeholder')}
                   />
                 </div>
 
+                {submitMessage && (
+                  <div className="text-center text-sm font-semibold mb-2 mt-2" style={{ color: submitMessage.includes('başarı') || submitMessage.includes('success') ? '#22c55e' : '#ef4444' }}>
+                    {submitMessage}
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full bg-yellow-500 text-black py-3 px-6 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-200 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+                  disabled={isSubmitting}
+                  className="w-full bg-yellow-500 text-black py-3 px-6 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-200 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {t('send_message_btn')}
+                  {isSubmitting ? t('sending') : t('send_message_btn')}
                 </button>
               </form>
             </div>

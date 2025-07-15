@@ -80,7 +80,7 @@ const Cars = () => {
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
           {t('vip_fleet_title')}
         </h2>
-        <p className="text-gray-300">
+        <p className="text-gray-300 text-lg">
           {t('vip_fleet_subtitle')}
         </p>
       </div>

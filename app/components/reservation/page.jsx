@@ -256,7 +256,6 @@ const Reservation = () => {
               ))}
             </select>
           </div>
-
           {/* Rezervasyon Yap Butonu */}
           <div className="sm:col-span-2">
             <label className="block text-sm font-medium text-white mb-2">

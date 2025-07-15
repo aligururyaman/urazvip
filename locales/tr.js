@@ -63,7 +63,7 @@ export default {
   airport_transfer_desc: "Antalya Havalimanı'ndan şehrin tüm noktalarına güvenli transfer hizmeti",
   city_transfer: "Şehiriçi Transfer",
   city_transfer_desc: "Antalya içinde otel, restoran ve turistik noktalar arası transfer",
-  vip_service: "VIP Hizmet",
+  vip_service: "VIP Transfer Hizmeti",
   vip_service_desc: "Lüks araçlarla premium transfer deneyimi",
   group_transfer: "Grup Transferi",
   group_transfer_desc: "Büyük gruplar için minibüs ve otobüs hizmeti",

@@ -7,13 +7,29 @@ import Cars from "./components/cars/page";
 import OurServices from "./components/our-services/OurServices";
 import { useState } from "react";
 import { useI18n } from '../lib/i18nContext';
+import Head from 'next/head';
+import AnimatedTestimonials from "./components/ui/animated-testimonials";
 
 export default function Home() {
   const [showReservation, setShowReservation] = useState(false);
   const { t } = useI18n();
-  
+
   return (
    <div className="bg-black">
+    <Head>
+      <title>URAZ VİP TRANSFER - Antalya Havalimanı VIP Transfer Hizmeti</title>
+      <meta name="description" content="Antalya Havalimanı'ndan tüm destinasyonlara VIP transfer hizmeti. Lüks araçlar, profesyonel şoförler, 7/24 hizmet. Mercedes, BMW lüks araç filosu ile konforlu seyahat." />
+      <meta name="keywords" content="Antalya VIP transfer, havalimanı transfer, lüks araç, Mercedes, BMW, Antalya transfer, özel şoför, 7/24 transfer, URAZ VIP" />
+      <meta property="og:title" content="URAZ VİP TRANSFER - Antalya Havalimanı VIP Transfer Hizmeti" />
+      <meta property="og:description" content="Antalya Havalimanı'ndan tüm destinasyonlara VIP transfer hizmeti. Lüks araçlar, profesyonel şoförler, 7/24 hizmet." />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://urazvip.com/" />
+      <meta property="og:image" content="/logo.jpg" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="URAZ VİP TRANSFER - Antalya Havalimanı VIP Transfer Hizmeti" />
+      <meta name="twitter:description" content="Antalya Havalimanı'ndan tüm destinasyonlara VIP transfer hizmeti. Lüks araçlar, profesyonel şoförler, 7/24 hizmet." />
+      <meta name="twitter:image" content="/logo.jpg" />
+    </Head>
     {/* Rezervasyon - Üstte tam genişlik, açılır/kapanır */}
     <div className="p-4 sm:p-6 lg:p-14 bg-black">
       <div className="max-w-4xl mx-auto">
@@ -36,7 +52,6 @@ export default function Home() {
         </div>
       </div>
     </div>
-    
     {/* Hero ve Cars - Alt kısım */}
     <div className="p-4 sm:p-6 lg:p-14 bg-black">
       <div className="max-w-7xl mx-auto">
@@ -50,7 +65,6 @@ export default function Home() {
         </div>
       </div>
     </div>
-    
     {/* Transfer Bölgeleri */}
     <OurServices />
     <Cards />

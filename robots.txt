@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://urazvip.com/sitemap.xml 

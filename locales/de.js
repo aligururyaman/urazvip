@@ -63,7 +63,7 @@ export default {
   airport_transfer_desc: "Sicherer Transferservice vom Flughafen Antalya zu allen Punkten der Stadt",
   city_transfer: "Stadttransfer",
   city_transfer_desc: "Transfer zwischen Hotels, Restaurants und Sehenswürdigkeiten in Antalya",
-  vip_service: "VIP Service",
+  vip_service: "VIP Transferdienst",
   vip_service_desc: "Premium Transfererfahrung mit Luxusfahrzeugen",
   group_transfer: "Gruppentransfer",
   group_transfer_desc: "Minibus- und Bus-Service für große Gruppen",

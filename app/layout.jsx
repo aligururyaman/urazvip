@@ -5,6 +5,7 @@ import Footer from "./components/footer/page";
 import { Montserrat } from 'next/font/google';
 import { I18nProvider } from '../lib/i18nContext';
 import GlobalLoader from "./components/GlobalLoader";
+import WhatsappFloatingButton from "./components/our-services/WhatsappFloatingButton";
 
 
 const geistSans = Geist({
@@ -48,6 +49,7 @@ export default function RootLayout({ children }) {
           <GlobalLoader>
             {children}
           </GlobalLoader>
+          <WhatsappFloatingButton />
           <Footer />
         </I18nProvider>
       </body>

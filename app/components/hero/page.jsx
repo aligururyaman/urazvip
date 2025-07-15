@@ -144,7 +144,7 @@ const Hero = () => {
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
           {t('vip_destinations_title')}
         </h2>
-        <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
+        <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed mb-6">
           {t('vip_destinations_subtitle')}
         </p>
       </div>

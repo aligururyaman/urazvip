@@ -2,48 +2,51 @@
 import React from "react";
 import Link from "next/link";
 import Head from 'next/head';
+import { useI18n } from '../../../lib/i18nContext';
 
 export default function CrafterDetayPage() {
+  const { t } = useI18n();
+
   const ozellikler = [
     {
       icon: "👥",
-      title: "18+1 veya 20+1 Yolcu Kapasitesi",
-      description: "En yüksek yolcu kapasitesi"
+      title: t('crafter_capacity'),
+      description: t('crafter_capacity_desc')
     },
     {
       icon: "📦",
-      title: "Maksimum Yük Kapasitesi",
-      description: "Büyük bagaj ve yük alanı"
+      title: t('crafter_max_cargo'),
+      description: t('crafter_max_cargo_desc')
     },
     {
       icon: "⭐",
-      title: "Lüks Deneyim",
-      description: "Premium konfor ve şıklık"
+      title: t('crafter_luxury_experience'),
+      description: t('crafter_luxury_experience_desc')
     },
     {
       icon: "🪑",
-      title: "Rahat Koltuk",
-      description: "Uzun yolculuklar için tasarlandı"
+      title: t('crafter_comfortable_seats'),
+      description: t('crafter_comfortable_seats_desc')
     },
     {
       icon: "🧳",
-      title: "Geniş Yük Alanı",
-      description: "Büyük bagaj kapasitesi"
+      title: t('crafter_cargo_area'),
+      description: t('crafter_cargo_area_desc')
     },
     {
       icon: "🛡️",
-      title: "Güvenli Sürüş",
-      description: "Gelişmiş güvenlik sistemleri"
+      title: t('crafter_safe_driving'),
+      description: t('crafter_safe_driving_desc')
     },
     {
       icon: "🚐",
-      title: "Konforlu Kabin",
-      description: "Geniş ve ferah iç mekan"
+      title: t('crafter_comfortable_cabin'),
+      description: t('crafter_comfortable_cabin_desc')
     },
     {
       icon: "🔌",
-      title: "Bağlantı Portları",
-      description: "USB ve şarj noktaları"
+      title: t('crafter_connection_ports'),
+      description: t('crafter_connection_ports_desc')
     }
   ];
 
@@ -73,15 +76,14 @@ export default function CrafterDetayPage() {
               Volkswagen <span className="text-[#FFD700]">Crafter</span>
             </h1>
             <p className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-4xl mx-auto leading-relaxed">
-              Volkswagen Crafter, büyük kapasitesi ve dayanıklı yapısı ile hem yolcu hem de yük taşımacılığında mükemmel performans sunar. 
-              Ekonomik yakıt tüketimi ve uzun ömürlü motoru ile işletmeniz için en verimli çözümü sağlar.
+              {t('crafter_hero_description')}
             </p>
           </div>
 
           {/* Features Section */}
           <div className="mb-16 sm:mb-20 lg:mb-24">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-white mb-8 sm:mb-12">
-              Özellikler
+              {t('features')}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {ozellikler.map((ozellik, i) => (
@@ -106,7 +108,7 @@ export default function CrafterDetayPage() {
           {/* Gallery Section */}
           <div className="mb-16 sm:mb-20">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-white mb-8 sm:mb-12">
-              Galeri
+              {t('gallery')}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {images.map(num => (
@@ -133,23 +135,23 @@ export default function CrafterDetayPage() {
           <div className="text-center">
             <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 border border-gray-700/50 rounded-2xl p-6 sm:p-8 lg:p-12 backdrop-blur-sm">
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4">
-                Rezervasyon Yapın
+                {t('make_reservation')}
               </h3>
               <p className="text-gray-300 text-sm sm:text-base mb-6 max-w-2xl mx-auto">
-                Volkswagen Crafter aracımızla maksimum kapasite ve konforlu transfer hizmeti alın.
+                {t('crafter_cta_description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
                   href="/rezervasyon" 
                   className="bg-gradient-to-r from-[#FFD700] to-[#FFC300] hover:from-[#FFC300] hover:to-[#FFD700] text-black font-bold py-3 px-6 sm:px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#FFD700]/25 transform hover:-translate-y-1"
                 >
-                  Rezervasyon Yap
+                  {t('book_now')}
                 </Link>
                 <Link 
                   href="/araclar" 
                   className="bg-transparent border border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-black font-bold py-3 px-6 sm:px-8 rounded-lg transition-all duration-300 hover:scale-105"
                 >
-                  Diğer Araçlar
+                  {t('other_vehicles')}
                 </Link>
               </div>
             </div>

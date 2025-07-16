@@ -1,9 +1,11 @@
 "use client"
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useI18n } from '../../lib/i18nContext';
 
 const AdminLogin = () => {
   const router = useRouter();
+  const { t } = useI18n();
   const [credentials, setCredentials] = useState({
     username: '',
     password: ''
@@ -29,7 +31,7 @@ const AdminLogin = () => {
       localStorage.setItem('adminLoggedIn', 'true');
       router.push('/admin');
     } else {
-      setError('Kullanıcı adı veya şifre hatalı!');
+      setError(t('login_error'));
     }
 
     setIsLoading(false);
@@ -40,10 +42,10 @@ const AdminLogin = () => {
       <div className="max-w-md w-full space-y-6 sm:space-y-8">
         <div className="text-center">
           <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-            URAZ VİP TRANSFER
+            {t('brand')}
           </h1>
           <p className="text-gray-300 text-sm sm:text-base">
-            Admin Paneli Girişi
+            {t('admin_login_title')}
           </p>
         </div>
 
@@ -57,7 +59,7 @@ const AdminLogin = () => {
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <div>
               <label className="block text-sm font-medium text-white mb-2">
-                Kullanıcı Adı
+                {t('username')}
               </label>
               <input
                 type="text"
@@ -66,13 +68,13 @@ const AdminLogin = () => {
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                placeholder="Kullanıcı adınızı girin"
+                placeholder={t('username_placeholder')}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-white mb-2">
-                Şifre
+                {t('password')}
               </label>
               <input
                 type="password"
@@ -81,7 +83,7 @@ const AdminLogin = () => {
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-3 border border-yellow-500 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                placeholder="Şifrenizi girin"
+                placeholder={t('password_placeholder')}
               />
             </div>
 
@@ -90,7 +92,7 @@ const AdminLogin = () => {
               disabled={isLoading}
               className="w-full bg-yellow-500 text-black py-3 px-6 rounded-lg font-semibold hover:bg-yellow-400 transition-colors duration-200 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? 'Giriş Yapılıyor...' : 'Giriş Yap'}
+              {isLoading ? t('logging_in') : t('login')}
             </button>
           </form>
 
@@ -99,15 +101,15 @@ const AdminLogin = () => {
               href="/"
               className="text-yellow-500 hover:text-yellow-400 text-sm"
             >
-              Ana Sayfaya Dön
+              {t('back_to_home')}
             </a>
           </div>
         </div>
 
         <div className="text-center text-gray-400 text-sm">
-          <p>Demo Giriş Bilgileri:</p>
-          <p>Kullanıcı Adı: admin</p>
-          <p>Şifre: urazvip2024</p>
+          <p>{t('demo_login_info')}:</p>
+          <p>{t('username')}: admin</p>
+          <p>{t('password')}: urazvip2024</p>
         </div>
       </div>
     </div>

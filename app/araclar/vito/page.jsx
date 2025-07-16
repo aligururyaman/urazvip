@@ -2,48 +2,51 @@
 import React from "react";
 import Link from "next/link";
 import Head from 'next/head';
+import { useI18n } from '../../../lib/i18nContext';
 
 export default function VitoDetayPage() {
+  const { t } = useI18n();
+
   const ozellikler = [
     {
       icon: "👥",
-      title: "9+1 Yolcu Kapasitesi",
-      description: "Geniş ve konforlu koltuk düzeni"
+      title: t('vito_capacity'),
+      description: t('vito_capacity_desc')
     },
     {
       icon: "🪑",
-      title: "Deri Koltuk",
-      description: "Premium deri koltuklar"
+      title: t('vito_leather_seats'),
+      description: t('vito_leather_seats_desc')
     },
     {
       icon: "🔌",
-      title: "USB Şarj Girişleri",
-      description: "Her koltukta USB şarj noktası"
+      title: t('vito_usb_charging'),
+      description: t('vito_usb_charging_desc')
     },
     {
       icon: "❄️",
-      title: "Klima Sistemi",
-      description: "Dijital kontrol paneli"
+      title: t('vito_ac_system'),
+      description: t('vito_ac_system_desc')
     },
     {
       icon: "🧳",
-      title: "Geniş Bagaj",
-      description: "Büyük bagaj hacmi"
+      title: t('vito_luggage'),
+      description: t('vito_luggage_desc')
     },
     {
       icon: "🚪",
-      title: "Elektrikli Kapılar",
-      description: "Otomatik kapı sistemi"
+      title: t('vito_electric_doors'),
+      description: t('vito_electric_doors_desc')
     },
     {
       icon: "💡",
-      title: "LED Aydınlatma",
-      description: "Premium aydınlatma sistemi"
+      title: t('vito_led_lighting'),
+      description: t('vito_led_lighting_desc')
     },
     {
       icon: "🎵",
-      title: "Premium Ses",
-      description: "Yüksek kaliteli ses sistemi"
+      title: t('vito_premium_sound'),
+      description: t('vito_premium_sound_desc')
     }
   ];
 
@@ -73,15 +76,14 @@ export default function VitoDetayPage() {
               Mercedes <span className="text-[#FFD700]">Vito VIP</span>
             </h1>
             <p className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-4xl mx-auto leading-relaxed">
-              Konfor, şıklık ve güvenliği bir araya getiren Mercedes Vito VIP aracımız, transfer hizmetlerinde üst düzey bir yolculuk deneyimi sunar.
-              Geniş iç hacmi, zarif tasarımı ve teknolojik donanımlarıyla, hem iş hem özel seyahatlerinizde kusursuz bir sürüş keyfi yaşatır.
+              {t('vito_hero_description')}
             </p>
           </div>
 
           {/* Features Section */}
           <div className="mb-16 sm:mb-20 lg:mb-24">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-white mb-8 sm:mb-12">
-              Özellikler
+              {t('features')}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {ozellikler.map((ozellik, i) => (
@@ -106,7 +108,7 @@ export default function VitoDetayPage() {
           {/* Gallery Section */}
           <div className="mb-16 sm:mb-20">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-white mb-8 sm:mb-12">
-              Galeri
+              {t('gallery')}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {images.map(num => (
@@ -133,23 +135,23 @@ export default function VitoDetayPage() {
           <div className="text-center">
             <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 border border-gray-700/50 rounded-2xl p-6 sm:p-8 lg:p-12 backdrop-blur-sm">
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4">
-                Rezervasyon Yapın
+                {t('make_reservation')}
               </h3>
               <p className="text-gray-300 text-sm sm:text-base mb-6 max-w-2xl mx-auto">
-                Mercedes Vito VIP aracımızla lüks ve konforlu bir yolculuk deneyimi yaşayın.
+                {t('vito_cta_description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
                   href="/rezervasyon" 
                   className="bg-gradient-to-r from-[#FFD700] to-[#FFC300] hover:from-[#FFC300] hover:to-[#FFD700] text-black font-bold py-3 px-6 sm:px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#FFD700]/25 transform hover:-translate-y-1"
                 >
-                  Rezervasyon Yap
+                  {t('book_now')}
                 </Link>
                 <Link 
                   href="/araclar" 
                   className="bg-transparent border border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-black font-bold py-3 px-6 sm:px-8 rounded-lg transition-all duration-300 hover:scale-105"
                 >
-                  Diğer Araçlar
+                  {t('other_vehicles')}
                 </Link>
               </div>
             </div>

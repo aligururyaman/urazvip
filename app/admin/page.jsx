@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useI18n } from '../../lib/i18nContext';
 import { 
   getReservations, 
   updateReservationStatus, 
@@ -10,6 +11,7 @@ import { sendReservationApprovedEmail, sendTestEmail } from '../../lib/emailServ
 
 const AdminPanel = () => {
   const router = useRouter();
+  const { t } = useI18n();
   const [reservations, setReservations] = useState([]);
   const [selectedReservation, setSelectedReservation] = useState(null);
   const [filter, setFilter] = useState('all');
@@ -113,7 +115,7 @@ const AdminPanel = () => {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-white text-center">
-          <h1 className="text-2xl font-bold mb-4">Yönlendiriliyor...</h1>
+          <h1 className="text-2xl font-bold mb-4">{t('redirecting')}</h1>
         </div>
       </div>
     );
@@ -127,17 +129,17 @@ const AdminPanel = () => {
             <div></div>
             <div>
               <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-                URAZ VİP TRANSFER - Admin Paneli
+                {t('brand')} - {t('admin_panel')}
               </h1>
               <p className="text-gray-300 text-sm sm:text-base">
-                Rezervasyon yönetimi ve onay işlemleri
+                {t('admin_panel_subtitle')}
               </p>
             </div>
             <button
               onClick={handleLogout}
               className="bg-red-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-red-700 transition-colors text-sm sm:text-base"
             >
-              Çıkış Yap
+              {t('logout')}
             </button>
           </div>
         </div>
@@ -153,7 +155,7 @@ const AdminPanel = () => {
                   : 'bg-gray-800 text-white hover:bg-gray-700'
               }`}
             >
-              Tümü ({reservations.length})
+              {t('all')} ({reservations.length})
             </button>
             <button
               onClick={() => setFilter('Beklemede')}
@@ -163,7 +165,7 @@ const AdminPanel = () => {
                   : 'bg-gray-800 text-white hover:bg-gray-700'
               }`}
             >
-              Beklemede ({reservations.filter(r => r.status === 'Beklemede').length})
+              {t('pending')} ({reservations.filter(r => r.status === 'Beklemede').length})
             </button>
             <button
               onClick={() => setFilter('Onay Bekliyor')}
@@ -173,7 +175,7 @@ const AdminPanel = () => {
                   : 'bg-gray-800 text-white hover:bg-gray-700'
               }`}
             >
-              Onay Bekliyor ({reservations.filter(r => r.status === 'Onay Bekliyor').length})
+              {t('waiting_approval')} ({reservations.filter(r => r.status === 'Onay Bekliyor').length})
             </button>
             <button
               onClick={() => setFilter('Onaylandı')}
@@ -183,7 +185,7 @@ const AdminPanel = () => {
                   : 'bg-gray-800 text-white hover:bg-gray-700'
               }`}
             >
-              Onaylandı ({reservations.filter(r => r.status === 'Onaylandı').length})
+              {t('approved')} ({reservations.filter(r => r.status === 'Onaylandı').length})
             </button>
           </div>
         </div>
@@ -194,12 +196,12 @@ const AdminPanel = () => {
           <div className="lg:col-span-2">
             <div className="bg-gray-900 border border-yellow-500 rounded-lg p-4 sm:p-6">
               <h2 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">
-                Rezervasyon Listesi
+                {t('reservation_list')}
               </h2>
               <div className="space-y-4 max-h-96 overflow-y-auto">
                 {filteredReservations.length === 0 ? (
                   <p className="text-gray-400 text-center py-8">
-                    {filter === 'all' ? 'Henüz rezervasyon yok' : 'Bu durumda rezervasyon yok'}
+                    {filter === 'all' ? t('no_reservations_yet') : t('no_reservations_in_status')}
                   </p>
                 ) : (
                   filteredReservations.map((reservation) => (
@@ -226,7 +228,7 @@ const AdminPanel = () => {
                         </span>
                       </div>
                       <div className="text-sm text-gray-400">
-                        {reservation.passengers} Kişi • {reservation.from}
+                        {reservation.passengers} {t('passengers')} • {reservation.from}
                       </div>
                     </div>
                   ))
@@ -239,38 +241,38 @@ const AdminPanel = () => {
           <div className="lg:col-span-1">
             <div className="bg-gray-900 border border-yellow-500 rounded-lg p-4 sm:p-6">
               <h2 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4">
-                Rezervasyon Detayları
+                {t('reservation_details')}
               </h2>
               
               {selectedReservation ? (
                 <div className="space-y-4">
                   {/* Temel Bilgiler */}
                   <div>
-                    <h3 className="font-semibold text-white mb-2">Transfer Bilgileri</h3>
+                    <h3 className="font-semibold text-white mb-2">{t('transfer_info')}</h3>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-300">Rezervasyon No:</span>
+                        <span className="text-gray-300">{t('reservation_number')}:</span>
                         <span className="text-white">#{selectedReservation.id}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-300">Nereden:</span>
+                        <span className="text-gray-300">{t('from')}:</span>
                         <span className="text-white">{selectedReservation.from}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-300">Nereye:</span>
+                        <span className="text-gray-300">{t('to')}:</span>
                         <span className="text-white">{selectedReservation.to}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-300">Tarih:</span>
+                        <span className="text-gray-300">{t('date')}:</span>
                         <span className="text-white">{formatDate(selectedReservation.date)}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-300">Saat:</span>
+                        <span className="text-gray-300">{t('time')}:</span>
                         <span className="text-white">{formatTime(selectedReservation.time)}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-300">Yolcu Sayısı:</span>
-                        <span className="text-white">{selectedReservation.passengers} Kişi</span>
+                        <span className="text-gray-300">{t('passenger_count')}:</span>
+                        <span className="text-white">{selectedReservation.passengers} {t('passengers')}</span>
                       </div>
                     </div>
                   </div>
@@ -278,18 +280,18 @@ const AdminPanel = () => {
                   {/* İletişim Bilgileri */}
                   {selectedReservation.contactInfo && (
                     <div>
-                      <h3 className="font-semibold text-white mb-2">İletişim Bilgileri</h3>
+                      <h3 className="font-semibold text-white mb-2">{t('contact_info')}</h3>
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
-                          <span className="text-gray-300">Ad Soyad:</span>
+                          <span className="text-gray-300">{t('full_name')}:</span>
                           <span className="text-white">{selectedReservation.contactInfo.fullName}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-300">E-posta:</span>
+                          <span className="text-gray-300">{t('email')}:</span>
                           <span className="text-white">{selectedReservation.contactInfo.email}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-300">Telefon:</span>
+                          <span className="text-gray-300">{t('phone')}:</span>
                           <span className="text-white">{selectedReservation.contactInfo.phone}</span>
                         </div>
                       </div>
@@ -298,25 +300,25 @@ const AdminPanel = () => {
 
                   {/* Durum Güncelleme */}
                   <div>
-                    <h3 className="font-semibold text-white mb-2">Durum Güncelle</h3>
+                    <h3 className="font-semibold text-white mb-2">{t('update_status')}</h3>
                     <div className="space-y-2">
                       <button
                         onClick={() => handleUpdateReservationStatus(selectedReservation.id, 'Onaylandı')}
                         className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors"
                       >
-                        Onayla
+                        {t('approve')}
                       </button>
                       <button
                         onClick={() => handleUpdateReservationStatus(selectedReservation.id, 'İptal Edildi')}
                         className="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition-colors"
                       >
-                        İptal Et
+                        {t('cancel')}
                       </button>
                       <button
                         onClick={() => handleUpdateReservationStatus(selectedReservation.id, 'Beklemede')}
                         className="w-full bg-yellow-600 text-white py-2 px-4 rounded-lg hover:bg-yellow-700 transition-colors"
                       >
-                        Beklemede
+                        {t('pending')}
                       </button>
                     </div>
                   </div>
@@ -325,20 +327,20 @@ const AdminPanel = () => {
                   <div>
                     <button
                       onClick={() => {
-                        if (confirm('Bu rezervasyonu silmek istediğinizden emin misiniz?')) {
+                        if (confirm(t('confirm_delete'))) {
                           handleDeleteReservation(selectedReservation.id);
                           setSelectedReservation(null);
                         }
                       }}
                       className="w-full bg-red-800 text-white py-2 px-4 rounded-lg hover:bg-red-900 transition-colors"
                     >
-                      Rezervasyonu Sil
+                      {t('delete_reservation')}
                     </button>
                   </div>
                 </div>
               ) : (
                 <p className="text-gray-400 text-center py-8">
-                  Detayları görmek için bir rezervasyon seçin
+                  {t('select_reservation_to_view_details')}
                 </p>
               )}
             </div>
@@ -356,12 +358,12 @@ const AdminPanel = () => {
                 alert(result.message);
               } catch (error) {
                 console.error('Test hatası:', error);
-                alert('Test e-postası gönderilemedi: ' + error.message);
+                alert(t('test_email_failed') + error.message);
               }
             }}
             className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
           >
-            Test E-postası Gönder
+            {t('send_test_email')}
           </button>
         </div>
 
@@ -369,25 +371,25 @@ const AdminPanel = () => {
         <div className="mt-6 sm:mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           <div className="bg-gray-900 border border-yellow-500 rounded-lg p-4 text-center">
             <div className="text-2xl font-bold text-yellow-500">{reservations.length}</div>
-            <div className="text-sm text-gray-300">Toplam Rezervasyon</div>
+            <div className="text-sm text-gray-300">{t('total_reservations')}</div>
           </div>
           <div className="bg-gray-900 border border-yellow-500 rounded-lg p-4 text-center">
             <div className="text-2xl font-bold text-yellow-500">
               {reservations.filter(r => r.status === 'Beklemede').length}
             </div>
-            <div className="text-sm text-gray-300">Beklemede</div>
+            <div className="text-sm text-gray-300">{t('pending_reservations')}</div>
           </div>
           <div className="bg-gray-900 border border-yellow-500 rounded-lg p-4 text-center">
             <div className="text-2xl font-bold text-yellow-500">
               {reservations.filter(r => r.status === 'Onay Bekliyor').length}
             </div>
-            <div className="text-sm text-gray-300">Onay Bekliyor</div>
+            <div className="text-sm text-gray-300">{t('waiting_approval_reservations')}</div>
           </div>
           <div className="bg-gray-900 border border-yellow-500 rounded-lg p-4 text-center">
             <div className="text-2xl font-bold text-yellow-500">
               {reservations.filter(r => r.status === 'Onaylandı').length}
             </div>
-            <div className="text-sm text-gray-300">Onaylandı</div>
+            <div className="text-sm text-gray-300">{t('approved_reservations')}</div>
           </div>
         </div>
       </div>

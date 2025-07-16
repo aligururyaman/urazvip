@@ -2,48 +2,51 @@
 import React from "react";
 import Link from "next/link";
 import Head from 'next/head';
+import { useI18n } from '../../../lib/i18nContext';
 
 export default function SprinterDetayPage() {
+  const { t } = useI18n();
+
   const ozellikler = [
     {
       icon: "👥",
-      title: "10+1 veya 18+1 Yolcu Kapasitesi",
-      description: "Büyük grup transferleri için ideal"
+      title: t('sprinter_capacity'),
+      description: t('sprinter_capacity_desc')
     },
     {
       icon: "🏗️",
-      title: "Yüksek Tavan",
-      description: "Geniş ve ferah iç mekan"
+      title: t('sprinter_high_roof'),
+      description: t('sprinter_high_roof_desc')
     },
     {
       icon: "🔌",
-      title: "Çoklu USB Girişleri",
-      description: "Her koltukta şarj noktası"
+      title: t('sprinter_multiple_usb'),
+      description: t('sprinter_multiple_usb_desc')
     },
     {
       icon: "❄️",
-      title: "Klima Sistemi",
-      description: "Gelişmiş ısıtma ve soğutma"
+      title: t('sprinter_ac_system'),
+      description: t('sprinter_ac_system_desc')
     },
     {
       icon: "🧳",
-      title: "Geniş Bagaj Alanı",
-      description: "Büyük bagaj kapasitesi"
+      title: t('sprinter_luggage_area'),
+      description: t('sprinter_luggage_area_desc')
     },
     {
       icon: "🚪",
-      title: "Elektrikli Kapılar",
-      description: "Otomatik kaydırmalı kapılar"
+      title: t('sprinter_electric_doors'),
+      description: t('sprinter_electric_doors_desc')
     },
     {
       icon: "🛡️",
-      title: "Güvenlik Sistemi",
-      description: "Gelişmiş güvenlik teknolojileri"
+      title: t('sprinter_security_system'),
+      description: t('sprinter_security_system_desc')
     },
     {
       icon: "🪑",
-      title: "Konforlu Koltuklar",
-      description: "Uzun yolculuklar için tasarlandı"
+      title: t('sprinter_comfortable_seats'),
+      description: t('sprinter_comfortable_seats_desc')
     }
   ];
 
@@ -73,15 +76,14 @@ export default function SprinterDetayPage() {
               Mercedes <span className="text-[#FFD700]">Sprinter</span>
             </h1>
             <p className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-4xl mx-auto leading-relaxed">
-              Mercedes Sprinter, yüksek kapasitesi ve konforlu seyahat deneyimi ile grup transferleri için ideal bir seçimdir. 
-              Geniş iç mekanı, güvenli sürüş teknolojileri ve dayanıklı yapısı ile uzun yolculuklarda bile maksimum konfor sağlar.
+              {t('sprinter_hero_description')}
             </p>
           </div>
 
           {/* Features Section */}
           <div className="mb-16 sm:mb-20 lg:mb-24">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-white mb-8 sm:mb-12">
-              Özellikler
+              {t('features')}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {ozellikler.map((ozellik, i) => (
@@ -106,7 +108,7 @@ export default function SprinterDetayPage() {
           {/* Gallery Section */}
           <div className="mb-16 sm:mb-20">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-white mb-8 sm:mb-12">
-              Galeri
+              {t('gallery')}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {images.map(num => (
@@ -133,23 +135,23 @@ export default function SprinterDetayPage() {
           <div className="text-center">
             <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 border border-gray-700/50 rounded-2xl p-6 sm:p-8 lg:p-12 backdrop-blur-sm">
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4">
-                Rezervasyon Yapın
+                {t('make_reservation')}
               </h3>
               <p className="text-gray-300 text-sm sm:text-base mb-6 max-w-2xl mx-auto">
-                Mercedes Sprinter aracımızla büyük gruplar için konforlu ve güvenli transfer hizmeti alın.
+                {t('sprinter_cta_description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
                   href="/rezervasyon" 
                   className="bg-gradient-to-r from-[#FFD700] to-[#FFC300] hover:from-[#FFC300] hover:to-[#FFD700] text-black font-bold py-3 px-6 sm:px-8 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#FFD700]/25 transform hover:-translate-y-1"
                 >
-                  Rezervasyon Yap
+                  {t('book_now')}
                 </Link>
                 <Link 
                   href="/araclar" 
                   className="bg-transparent border border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-black font-bold py-3 px-6 sm:px-8 rounded-lg transition-all duration-300 hover:scale-105"
                 >
-                  Diğer Araçlar
+                  {t('other_vehicles')}
                 </Link>
               </div>
             </div>

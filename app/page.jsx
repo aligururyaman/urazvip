@@ -1,5 +1,4 @@
 "use client"
-import Image from "next/image";
 import Hero from "./components/hero/page";
 import Cards from "./components/cards/page";
 import Reservation from "./components/reservation/page";
@@ -8,7 +7,6 @@ import OurServices from "./components/our-services/OurServices";
 import { useState } from "react";
 import { useI18n } from '../lib/i18nContext';
 import Head from 'next/head';
-import AnimatedTestimonials from "./components/ui/animated-testimonials";
 
 export default function Home() {
   const [showReservation, setShowReservation] = useState(false);
@@ -23,7 +21,7 @@ export default function Home() {
       <meta property="og:title" content="URAZ VİP TRANSFER - Antalya Havalimanı VIP Transfer Hizmeti" />
       <meta property="og:description" content="Antalya Havalimanı'ndan tüm destinasyonlara VIP transfer hizmeti. Lüks araçlar, profesyonel şoförler, 7/24 hizmet." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://urazvip.com/" />
+      <meta property="og:url" content="https://urazviptransfer.com/" />
       <meta property="og:image" content="/logo.jpg" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="URAZ VİP TRANSFER - Antalya Havalimanı VIP Transfer Hizmeti" />

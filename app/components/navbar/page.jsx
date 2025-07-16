@@ -59,6 +59,12 @@ const Navbar = () => {
     de: 'DE',
     ru: 'RU'
   };
+  const languageFlags = {
+    tr: '🇹🇷',
+    en: '🇬🇧',
+    de: '🇩🇪',
+    ru: '🇷🇺'
+  };
 
   if (!mounted) return null;
 
@@ -103,6 +109,9 @@ const Navbar = () => {
               onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
               className="flex items-center gap-1 px-3 py-2 bg-white/20 hover:bg-white/30 rounded-lg text-white font-medium transition-colors duration-200"
             >
+              <span className="mr-2">
+                <img src={`/flags/${language}.png`} alt={languageNames[language]} className="inline w-5 h-5 rounded-full" />
+              </span>
               <span className="text-sm font-bold">{languageNames[language]}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -110,7 +119,7 @@ const Navbar = () => {
             </button>
             
             {languageDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-20 bg-white rounded-lg shadow-lg z-50">
+              <div className="absolute right-0 mt-2 w-28 bg-white rounded-lg shadow-lg z-50">
                 {Object.entries(languageNames).map(([code, name]) => (
                   <button
                     key={code}
@@ -121,7 +130,10 @@ const Navbar = () => {
                         : 'text-gray-700 hover:bg-gray-100'
                     }`}
                   >
-                    {name}
+                   <span className="mr-2">
+                     <img src={`/flags/${code}.png`} alt={name} className="inline w-5 h-5 rounded-full" />
+                   </span>
+                   <span>{name}</span>
                   </button>
                 ))}
               </div>

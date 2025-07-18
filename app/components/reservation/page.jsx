@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import locationsData from '../../data/locations.js';
 import { addReservation } from '../../../lib/firebaseService';
 import { sendReservationReceivedEmail } from '../../../lib/emailService';
@@ -8,6 +8,7 @@ import { useI18n } from '../../../lib/i18nContext';
 
 const Reservation = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { t, language } = useI18n();
   const [formData, setFormData] = useState({
     from: 'Antalya Havalimanı',
@@ -19,6 +20,14 @@ const Reservation = () => {
     fullName: '',
     phone: ''
   });
+
+  // Sayfa açıldığında query parametresinden 'to' varsa otomatik doldur
+  React.useEffect(() => {
+    const toParam = searchParams.get('to');
+    if (toParam && !formData.to) {
+      setFormData(prev => ({ ...prev, to: toParam }));
+    }
+  }, [searchParams, formData.to]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');

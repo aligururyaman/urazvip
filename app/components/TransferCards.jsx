@@ -13,7 +13,7 @@ const TransferCard = ({ title, duration, price, image }) => {
   }, []);
 
   const handleReservation = () => {
-    router.push('/rezervasyon');
+    router.push(`/rezervasyon?to=${encodeURIComponent(title)}`);
   };
 
   // Don't render translated content until mounted

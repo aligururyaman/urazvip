@@ -8,7 +8,7 @@ import { useI18n } from '../../../lib/i18nContext';
 
 const Reservation = () => {
   const router = useRouter();
-  const { t } = useI18n();
+  const { t, language } = useI18n();
   const [formData, setFormData] = useState({
     from: 'Antalya Havalimanı',
     to: '',
@@ -34,6 +34,52 @@ const Reservation = () => {
     { value: 'Diğer', label: 'Diğer' },
     ...locationsData.map(loc => ({ value: loc.name, label: loc.name }))
   ];
+
+  // Euro fiyat tablosu (cards/page.jsx ile aynı)
+  const euroLocations = [
+    { name: "Kundu", price: "25€" },
+    { name: "Lara", price: "25€" },
+    { name: "Serik", price: "40€" },
+    { name: "Belek", price: "40€" },
+    { name: "Kemer", price: "40€" },
+    { name: "Kaş", price: "90€" },
+    { name: "Beldibi", price: "35€" },
+    { name: "Tekirova", price: "45€" },
+    { name: "Göynük", price: "35€" },
+    { name: "Çamyuva", price: "40€" },
+    { name: "Kiriş", price: "45€" },
+    { name: "Adrasan", price: "55€" },
+    { name: "Alanya", price: "65€" },
+    { name: "Mahmutlar", price: "70€" },
+    { name: "Okurcular", price: "60€" },
+    { name: "Avsallar", price: "60€" },
+    { name: "Gazipaşa", price: "85€" },
+    { name: "İncekum", price: "60€" },
+    { name: "Kumköy", price: "35€" },
+    { name: "Kızılot", price: "45€" },
+    { name: "Konaklı", price: "65€" },
+    { name: "Side", price: "40€" },
+    { name: "Türkler", price: "50€" },
+    { name: "Kalkan", price: "110€" },
+    { name: "Titreyengöl", price: "45€" },
+    { name: "Sorgun", price: "45€" },
+    { name: "Kadriye", price: "30€" },
+    { name: "Manavgat", price: "45€" },
+    { name: "Çolaklı", price: "45€" },
+    { name: "Şehiriçi", price: "25€" },
+    { name: "Konyaaltı", price: "30€" },
+    { name: "Olympos", price: "50€" }
+  ];
+
+  function getPrice(locationName, language) {
+    if (language === 'tr') {
+      const loc = locationsData.find(l => l.name === locationName);
+      return loc ? loc.price : '';
+    } else {
+      const euroLoc = euroLocations.find(e => e.name === locationName);
+      return euroLoc ? euroLoc.price : '';
+    }
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -147,7 +193,7 @@ const Reservation = () => {
                   ))
                 : locationsData.map(location => (
                     <option key={location.name} value={location.name}>
-                      {location.name} - {location.price}
+                      {location.name} - {getPrice(location.name, language)}
                     </option>
                   ))}
             </select>
